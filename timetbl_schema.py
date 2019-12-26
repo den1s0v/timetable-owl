@@ -121,10 +121,9 @@ takesPlace(?L2, ?r)
 # 2. Вместимость аудитории менее численности группы, занятие у которой там проходит
 		Imp().set_as_rule("""
 Room(?r), Lesson(?L), SubjAssignment(?sa), Group(?g), 
-capacity(?r, ?cap), size(?g, ?n), 
-hasLearningAssignment(?g, ?sa), 
-realizes(?L, ?sa),
+attends(?g, ?L),
 takesPlace(?L, ?r),
+capacity(?r, ?cap), size(?g, ?n), 
 lessThan(?cap, ?n)
  -> hasError(ERRORS, "Room overflow with students")
 """)
