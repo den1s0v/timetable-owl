@@ -1,0 +1,22 @@
+ttbl_rules.txt
+
+
+1. В одной аудитории (Room) проходит более одного урока одновременно
+
+Room(?r), Timeslot(?s), Lesson(?L1), Lesson(?L2),
+differentFrom(?L1, ?L2),
+isAtTimeslot(?L1, ?s),
+isAtTimeslot(?L2, ?s),
+takesPlace(?L1, ?r),
+takesPlace(?L2, ?r)
+ -> hasError(ERRORS, "Lessons clash at Room")
+
+2. Вместимость аудитории менее численности группы, занятие у которой там проходит
+
+Room(?r), Lesson(?l), SubjAssignment(?sa), Group(?g), 
+capacity(?r, ?cap), size(?g, ?n), 
+hasLearningAssignment(?g, ?sa), 
+realizes(?l, ?sa),
+takesPlace(?l, ?r),
+lessThan(?cap, ?n)
+ -> hasError(ERRORS, "Room overflow")
