@@ -90,7 +90,7 @@ def make_timetable_schema(onto, settings):
 		# Prepare empty timeslots for a week
 		for d in range(1, 1+t.weekDays):
 			for h in range(1, 1+t.dayHours):
-				name = "slot%d_%d" % (d, h)
+				name = name4timeslot(d, h)
 				slot = Timeslot(name)
 				slot.isPartOfTimetable = t
 				slot.day  = d
@@ -171,7 +171,8 @@ def make_overload_rule(subj='Group', max_lessons=4):
 	 -> hasError(ERRORS, ?msg)		
 	""".format(subj=subj, LessonTimeslot_declare=LessonTimeslot_declare, differenceAssertions_declare=differenceAssertions_declare)
 
-		
+def name4timeslot(d=1, h=1):
+	return "slot%d_%d" % (d, h)
 		
 
 
@@ -188,6 +189,20 @@ def set_instances(onto, prop_list):
 			cl = prop["class"]
 			for name in prop["names"]:
 				cl.__call__(name)  # make an individual
+				
+def assign(onto, prof_name, subject_name, group_name):
+	''' Bings the three to new SubjAssignment node and returns the node '''
+	prof 	= Professor(prof_name)
+	subject = Subject(subject_name)
+	group 	= Group(group_name)
+	sa_name = '%s-%s-%s' % (prof_name, subject_name, group_name)
+	sa_name = ''.join(sa_name.split())  # remove all whitespaces
+	with onto:
+		sa = SubjAssignment(sa_name)
+		sa.hasSubject.append(subject)
+		prof.hasTeachingAssignment.append(sa)
+		group.hasTeachingAssignment.append(sa)
+	return sa
 				
 
 def upload_rdf_to_SPARQL_endpoint(graphStore_url, rdf_file_path):
@@ -234,11 +249,11 @@ def main():
 	
 	# print("instances ready")
 	
-	# ttbl.save(file='timetable_schema.rdf', format='rdfxml')
-	# print("Saved RDF file!")
-	
 	return ######################################################## ! !
 				
+	ttbl.save(file='timetable_schema.rdf', format='rdfxml')
+	print("Saved RDF file!")
+	
 	
 	upload_rdf_to_SPARQL_endpoint('http://localhost:3030/ttbl/data', 'timetable_schema.rdf')
 				
