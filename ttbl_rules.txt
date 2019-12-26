@@ -4,7 +4,7 @@ ttbl_rules.txt
 1. В одной аудитории (Room) проходит более одного урока одновременно
 
 Room(?r), Timeslot(?s), Lesson(?L1), Lesson(?L2),
-differentFrom(?L1, ?L2),
+DifferentFrom(?L1, ?L2),
 isAtTimeslot(?L1, ?s),
 isAtTimeslot(?L2, ?s),
 takesPlace(?L1, ?r),
@@ -13,10 +13,23 @@ takesPlace(?L2, ?r)
 
 2. Вместимость аудитории менее численности группы, занятие у которой там проходит
 
-Room(?r), Lesson(?l), SubjAssignment(?sa), Group(?g), 
+Room(?r), Lesson(?L), SubjAssignment(?sa), Group(?g), 
+attends(?g, ?L),
+takesPlace(?L, ?r),
 capacity(?r, ?cap), size(?g, ?n), 
-hasLearningAssignment(?g, ?sa), 
-realizes(?l, ?sa),
-takesPlace(?l, ?r),
 lessThan(?cap, ?n)
- -> hasError(ERRORS, "Room overflow")
+ -> hasError(ERRORS, "Room overflow with students")
+ 
+ # 4.1 Перегрузка в день для Group
+Group(?g), 
+Lesson(?L1), Lesson(?L2), 
+Timeslot(?s1), Timeslot(?s2), 
+day(?s1, ?day),
+day(?s2, ?day),
+DifferentFrom(?L1, ?L2),
+isAtTimeslot(?L1, ?s1),
+isAtTimeslot(?L2, ?s2),
+attends(?g, ?L1),
+attends(?g, ?L2),
+stringConcat(?msg, "Group is overloaded at day ", ?day)
+ -> hasError(ERRORS, ?msg)	

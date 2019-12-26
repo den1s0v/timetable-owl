@@ -142,8 +142,35 @@ realizes(?L, ?sa)
  -> attends(?p, ?L)
 """)
 # 4.1 Перегрузка в день для Group
+		Imp().set_as_rule(make_overload_rule('Group', t.maxGroupHours))
+# 4.2 Перегрузка в день для Professor
+		Imp().set_as_rule(make_overload_rule('Professor', t.maxProfHours))
 		
-		
+
+def make_overload_rule(subj='Group', max_lessons=4):
+
+    n_excceed = max_lessons + 1
+    
+    from functools import reduce
+    from operator import add
+    import itertools
+
+    linear_template = '''Lesson(?L{i}), Timeslot(?s{i}), day(?s{i}, ?day), 
+	isAtTimeslot(?L{i}, ?s{i}), attends(?g, ?s{i}), 
+	'''
+    LessonTimeslot_declare = reduce(add, [linear_template.format(i=i) for i in range(n_excceed)])
+    
+    comb_template = '''DifferentFrom(?L{i}, ?L{j}), 
+	'''
+    differenceAssertions_declare = reduce(add, [comb_template.format(i=i, j=j) for i,j in itertools.combinations(range(n_excceed), 2)])
+    
+    return """
+	{subj}(?g), 
+	{LessonTimeslot_declare}{differenceAssertions_declare}
+	stringConcat(?msg, "{subj} is overloaded at day ", ?day)
+	 -> hasError(ERRORS, ?msg)		
+	""".format(subj=subj, LessonTimeslot_declare=LessonTimeslot_declare, differenceAssertions_declare=differenceAssertions_declare)
+
 		
 		
 
