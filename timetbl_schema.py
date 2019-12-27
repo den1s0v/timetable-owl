@@ -96,6 +96,8 @@ def make_timetable_schema(onto, settings):
 				slot.day  = d
 				slot.hour = h
 				
+				
+		close_world(Timeslot)
 			
 		
 		# SWRL Rules
@@ -249,11 +251,11 @@ def main():
 	
 	# print("instances ready")
 	
-	return ######################################################## ! !
-				
 	ttbl.save(file='timetable_schema.rdf', format='rdfxml')
 	print("Saved RDF file!")
 	
+	return ######################################################## ! !
+				
 	
 	upload_rdf_to_SPARQL_endpoint('http://localhost:3030/ttbl/data', 'timetable_schema.rdf')
 				

@@ -22,7 +22,6 @@
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#isAtTimeslot">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
   <rdfs:domain rdf:resource="#Lesson"/>
   <rdfs:range rdf:resource="#Timeslot"/>
   <rdfs:subPropertyOf rdf:resource="#referencesTo"/>
@@ -52,6 +51,11 @@
   <rdfs:subPropertyOf rdf:resource="#referencesTo"/>
 </owl:ObjectProperty>
 
+<owl:ObjectProperty rdf:about="#attends">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+</owl:ObjectProperty>
+
 <owl:DatatypeProperty rdf:about="#hasUniqueData">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
 </owl:DatatypeProperty>
@@ -63,6 +67,18 @@
 </owl:DatatypeProperty>
 
 <owl:DatatypeProperty rdf:about="#dayHours">
+  <rdfs:domain rdf:resource="#Timetable"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  <rdfs:subPropertyOf rdf:resource="#hasUniqueData"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#maxGroupHours">
+  <rdfs:domain rdf:resource="#Timetable"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  <rdfs:subPropertyOf rdf:resource="#hasUniqueData"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#maxProfHours">
   <rdfs:domain rdf:resource="#Timetable"/>
   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
   <rdfs:subPropertyOf rdf:resource="#hasUniqueData"/>
@@ -125,6 +141,101 @@
 
 <owl:Class rdf:about="#Timeslot">
   <rdfs:subClassOf rdf:resource="#TimetableElement"/>
+  <rdfs:subClassOf>
+    <owl:Class>
+      <owl:oneOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#slot4_1"/>
+        <rdf:Description rdf:about="#slot4_2"/>
+        <rdf:Description rdf:about="#slot4_4"/>
+        <rdf:Description rdf:about="#slot4_3"/>
+        <rdf:Description rdf:about="#slot4_5"/>
+        <rdf:Description rdf:about="#slot4_6"/>
+        <rdf:Description rdf:about="#slot5_1"/>
+        <rdf:Description rdf:about="#slot5_2"/>
+        <rdf:Description rdf:about="#slot5_3"/>
+        <rdf:Description rdf:about="#slot5_4"/>
+        <rdf:Description rdf:about="#slot5_5"/>
+        <rdf:Description rdf:about="#slot5_6"/>
+        <rdf:Description rdf:about="#slot1_1"/>
+        <rdf:Description rdf:about="#slot6_1"/>
+        <rdf:Description rdf:about="#slot1_3"/>
+        <rdf:Description rdf:about="#slot6_2"/>
+        <rdf:Description rdf:about="#slot6_3"/>
+        <rdf:Description rdf:about="#slot6_4"/>
+        <rdf:Description rdf:about="#slot1_2"/>
+        <rdf:Description rdf:about="#slot6_5"/>
+        <rdf:Description rdf:about="#slot1_4"/>
+        <rdf:Description rdf:about="#slot6_6"/>
+        <rdf:Description rdf:about="#slot1_5"/>
+        <rdf:Description rdf:about="#slot1_6"/>
+        <rdf:Description rdf:about="#slot2_1"/>
+        <rdf:Description rdf:about="#slot2_2"/>
+        <rdf:Description rdf:about="#slot2_3"/>
+        <rdf:Description rdf:about="#slot2_4"/>
+        <rdf:Description rdf:about="#slot2_5"/>
+        <rdf:Description rdf:about="#slot2_6"/>
+        <rdf:Description rdf:about="#slot3_1"/>
+        <rdf:Description rdf:about="#slot3_2"/>
+        <rdf:Description rdf:about="#slot3_3"/>
+        <rdf:Description rdf:about="#slot3_4"/>
+        <rdf:Description rdf:about="#slot3_5"/>
+        <rdf:Description rdf:about="#slot3_6"/>
+      </owl:oneOf>
+    </owl:Class>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#isPartOfTimetable"/>
+      <owl:allValuesFrom>
+        <owl:Class>
+          <owl:oneOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+            <rdf:Description rdf:about="#TABLE"/>
+          </owl:oneOf>
+        </owl:Class>
+      </owl:allValuesFrom>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
 </owl:Class>
 
 <owl:Class rdf:about="#Group">
@@ -165,13 +276,495 @@
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
+<Timetable rdf:about="#TABLE">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <weekDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</weekDays>
+  <dayHours rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</dayHours>
+  <maxGroupHours rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</maxGroupHours>
+  <maxProfHours rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</maxProfHours>
+</Timetable>
+
+<Timeslot rdf:about="#slot1_1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot1_2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot1_3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot1_4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot1_5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot1_6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot2_1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot2_2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot2_3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot2_4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot2_5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot2_6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot3_1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot3_2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot3_3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot3_4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot3_5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot3_6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot4_1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot4_2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot4_3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot4_4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot4_5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot4_6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot5_1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot5_2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot5_3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot5_4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot5_5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot5_6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot6_1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot6_2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot6_3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot6_4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot6_5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#slot6_6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <rdf:type>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#attends"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdf:type>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
+</Timeslot>
+
 <TimetableError rdf:about="#ERRORS">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
 </TimetableError>
 
 <swrl:Variable rdf:about="urn:swrl#r"/>
 
-<swrl:Variable rdf:about="urn:swrl#l"/>
+<swrl:Variable rdf:about="urn:swrl#s"/>
+
+<swrl:Variable rdf:about="urn:swrl#L1"/>
+
+<swrl:Variable rdf:about="urn:swrl#L2"/>
+
+<swrl:Variable rdf:about="urn:swrl#L"/>
 
 <swrl:Variable rdf:about="urn:swrl#sa"/>
 
@@ -181,13 +774,35 @@
 
 <swrl:Variable rdf:about="urn:swrl#n"/>
 
+<swrl:Variable rdf:about="urn:swrl#p"/>
+
+<swrl:Variable rdf:about="urn:swrl#L0"/>
+
+<swrl:Variable rdf:about="urn:swrl#s0"/>
+
+<swrl:Variable rdf:about="urn:swrl#day"/>
+
+<swrl:Variable rdf:about="urn:swrl#s1"/>
+
+<swrl:Variable rdf:about="urn:swrl#s2"/>
+
+<swrl:Variable rdf:about="urn:swrl#L3"/>
+
+<swrl:Variable rdf:about="urn:swrl#s3"/>
+
+<swrl:Variable rdf:about="urn:swrl#L4"/>
+
+<swrl:Variable rdf:about="urn:swrl#s4"/>
+
+<swrl:Variable rdf:about="urn:swrl#msg"/>
+
 <swrl:Imp>
   <swrl:body>
     <rdf:Description>
       <rdf:first>
         <swrl:ClassAtom>
-          <swrl:classPredicate rdf:resource="#Room"/>
-          <swrl:argument1 rdf:resource="urn:swrl#r"/>
+          <swrl:classPredicate rdf:resource="#Professor"/>
+          <swrl:argument1 rdf:resource="urn:swrl#g"/>
         </swrl:ClassAtom>
       </rdf:first>
       <rdf:rest>
@@ -195,89 +810,281 @@
           <rdf:first>
             <swrl:ClassAtom>
               <swrl:classPredicate rdf:resource="#Lesson"/>
-              <swrl:argument1 rdf:resource="urn:swrl#l"/>
+              <swrl:argument1 rdf:resource="urn:swrl#L0"/>
             </swrl:ClassAtom>
           </rdf:first>
           <rdf:rest>
             <rdf:Description>
               <rdf:first>
                 <swrl:ClassAtom>
-                  <swrl:classPredicate rdf:resource="#SubjAssignment"/>
-                  <swrl:argument1 rdf:resource="urn:swrl#sa"/>
+                  <swrl:classPredicate rdf:resource="#Timeslot"/>
+                  <swrl:argument1 rdf:resource="urn:swrl#s0"/>
                 </swrl:ClassAtom>
               </rdf:first>
               <rdf:rest>
                 <rdf:Description>
                   <rdf:first>
-                    <swrl:ClassAtom>
-                      <swrl:classPredicate rdf:resource="#Group"/>
-                      <swrl:argument1 rdf:resource="urn:swrl#g"/>
-                    </swrl:ClassAtom>
+                    <swrl:DatavaluedPropertyAtom>
+                      <swrl:propertyPredicate rdf:resource="#day"/>
+                      <swrl:argument1 rdf:resource="urn:swrl#s0"/>
+                      <swrl:argument2 rdf:resource="urn:swrl#day"/>
+                    </swrl:DatavaluedPropertyAtom>
                   </rdf:first>
                   <rdf:rest>
                     <rdf:Description>
                       <rdf:first>
-                        <swrl:DatavaluedPropertyAtom>
-                          <swrl:propertyPredicate rdf:resource="#capacity"/>
-                          <swrl:argument1 rdf:resource="urn:swrl#r"/>
-                          <swrl:argument2 rdf:resource="urn:swrl#cap"/>
-                        </swrl:DatavaluedPropertyAtom>
+                        <swrl:IndividualPropertyAtom>
+                          <swrl:propertyPredicate rdf:resource="#isAtTimeslot"/>
+                          <swrl:argument1 rdf:resource="urn:swrl#L0"/>
+                          <swrl:argument2 rdf:resource="urn:swrl#s0"/>
+                        </swrl:IndividualPropertyAtom>
                       </rdf:first>
                       <rdf:rest>
                         <rdf:Description>
                           <rdf:first>
-                            <swrl:DatavaluedPropertyAtom>
-                              <swrl:propertyPredicate rdf:resource="#size"/>
+                            <swrl:IndividualPropertyAtom>
+                              <swrl:propertyPredicate rdf:resource="#attends"/>
                               <swrl:argument1 rdf:resource="urn:swrl#g"/>
-                              <swrl:argument2 rdf:resource="urn:swrl#n"/>
-                            </swrl:DatavaluedPropertyAtom>
+                              <swrl:argument2 rdf:resource="urn:swrl#s0"/>
+                            </swrl:IndividualPropertyAtom>
                           </rdf:first>
                           <rdf:rest>
                             <rdf:Description>
                               <rdf:first>
-                                <swrl:IndividualPropertyAtom>
-                                  <swrl:propertyPredicate rdf:resource="#hasLearningAssignment"/>
-                                  <swrl:argument1 rdf:resource="urn:swrl#g"/>
-                                  <swrl:argument2 rdf:resource="urn:swrl#sa"/>
-                                </swrl:IndividualPropertyAtom>
+                                <swrl:ClassAtom>
+                                  <swrl:classPredicate rdf:resource="#Lesson"/>
+                                  <swrl:argument1 rdf:resource="urn:swrl#L1"/>
+                                </swrl:ClassAtom>
                               </rdf:first>
                               <rdf:rest>
                                 <rdf:Description>
                                   <rdf:first>
-                                    <swrl:IndividualPropertyAtom>
-                                      <swrl:propertyPredicate rdf:resource="#realizes"/>
-                                      <swrl:argument1 rdf:resource="urn:swrl#l"/>
-                                      <swrl:argument2 rdf:resource="urn:swrl#sa"/>
-                                    </swrl:IndividualPropertyAtom>
+                                    <swrl:ClassAtom>
+                                      <swrl:classPredicate rdf:resource="#Timeslot"/>
+                                      <swrl:argument1 rdf:resource="urn:swrl#s1"/>
+                                    </swrl:ClassAtom>
                                   </rdf:first>
                                   <rdf:rest>
                                     <rdf:Description>
                                       <rdf:first>
-                                        <swrl:IndividualPropertyAtom>
-                                          <swrl:propertyPredicate rdf:resource="#takesPlace"/>
-                                          <swrl:argument1 rdf:resource="urn:swrl#l"/>
-                                          <swrl:argument2 rdf:resource="urn:swrl#r"/>
-                                        </swrl:IndividualPropertyAtom>
+                                        <swrl:DatavaluedPropertyAtom>
+                                          <swrl:propertyPredicate rdf:resource="#day"/>
+                                          <swrl:argument1 rdf:resource="urn:swrl#s1"/>
+                                          <swrl:argument2 rdf:resource="urn:swrl#day"/>
+                                        </swrl:DatavaluedPropertyAtom>
                                       </rdf:first>
                                       <rdf:rest>
                                         <rdf:Description>
                                           <rdf:first>
-                                            <swrl:BuiltinAtom>
-                                              <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#lessThan"/>
-                                              <swrl:arguments>
+                                            <swrl:IndividualPropertyAtom>
+                                              <swrl:propertyPredicate rdf:resource="#isAtTimeslot"/>
+                                              <swrl:argument1 rdf:resource="urn:swrl#L1"/>
+                                              <swrl:argument2 rdf:resource="urn:swrl#s1"/>
+                                            </swrl:IndividualPropertyAtom>
+                                          </rdf:first>
+                                          <rdf:rest>
+                                            <rdf:Description>
+                                              <rdf:first>
+                                                <swrl:IndividualPropertyAtom>
+                                                  <swrl:propertyPredicate rdf:resource="#attends"/>
+                                                  <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                                                  <swrl:argument2 rdf:resource="urn:swrl#s1"/>
+                                                </swrl:IndividualPropertyAtom>
+                                              </rdf:first>
+                                              <rdf:rest>
                                                 <rdf:Description>
-                                                  <rdf:first rdf:resource="urn:swrl#cap"/>
+                                                  <rdf:first>
+                                                    <swrl:ClassAtom>
+                                                      <swrl:classPredicate rdf:resource="#Lesson"/>
+                                                      <swrl:argument1 rdf:resource="urn:swrl#L2"/>
+                                                    </swrl:ClassAtom>
+                                                  </rdf:first>
                                                   <rdf:rest>
                                                     <rdf:Description>
-                                                      <rdf:first rdf:resource="urn:swrl#n"/>
-                                                      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                      <rdf:first>
+                                                        <swrl:ClassAtom>
+                                                          <swrl:classPredicate rdf:resource="#Timeslot"/>
+                                                          <swrl:argument1 rdf:resource="urn:swrl#s2"/>
+                                                        </swrl:ClassAtom>
+                                                      </rdf:first>
+                                                      <rdf:rest>
+                                                        <rdf:Description>
+                                                          <rdf:first>
+                                                            <swrl:DatavaluedPropertyAtom>
+                                                              <swrl:propertyPredicate rdf:resource="#day"/>
+                                                              <swrl:argument1 rdf:resource="urn:swrl#s2"/>
+                                                              <swrl:argument2 rdf:resource="urn:swrl#day"/>
+                                                            </swrl:DatavaluedPropertyAtom>
+                                                          </rdf:first>
+                                                          <rdf:rest>
+                                                            <rdf:Description>
+                                                              <rdf:first>
+                                                                <swrl:IndividualPropertyAtom>
+                                                                  <swrl:propertyPredicate rdf:resource="#isAtTimeslot"/>
+                                                                  <swrl:argument1 rdf:resource="urn:swrl#L2"/>
+                                                                  <swrl:argument2 rdf:resource="urn:swrl#s2"/>
+                                                                </swrl:IndividualPropertyAtom>
+                                                              </rdf:first>
+                                                              <rdf:rest>
+                                                                <rdf:Description>
+                                                                  <rdf:first>
+                                                                    <swrl:IndividualPropertyAtom>
+                                                                      <swrl:propertyPredicate rdf:resource="#attends"/>
+                                                                      <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                                                                      <swrl:argument2 rdf:resource="urn:swrl#s2"/>
+                                                                    </swrl:IndividualPropertyAtom>
+                                                                  </rdf:first>
+                                                                  <rdf:rest>
+                                                                    <rdf:Description>
+                                                                      <rdf:first>
+                                                                        <swrl:ClassAtom>
+                                                                          <swrl:classPredicate rdf:resource="#Lesson"/>
+                                                                          <swrl:argument1 rdf:resource="urn:swrl#L3"/>
+                                                                        </swrl:ClassAtom>
+                                                                      </rdf:first>
+                                                                      <rdf:rest>
+                                                                        <rdf:Description>
+                                                                          <rdf:first>
+                                                                            <swrl:ClassAtom>
+                                                                              <swrl:classPredicate rdf:resource="#Timeslot"/>
+                                                                              <swrl:argument1 rdf:resource="urn:swrl#s3"/>
+                                                                            </swrl:ClassAtom>
+                                                                          </rdf:first>
+                                                                          <rdf:rest>
+                                                                            <rdf:Description>
+                                                                              <rdf:first>
+                                                                                <swrl:DatavaluedPropertyAtom>
+                                                                                  <swrl:propertyPredicate rdf:resource="#day"/>
+                                                                                  <swrl:argument1 rdf:resource="urn:swrl#s3"/>
+                                                                                  <swrl:argument2 rdf:resource="urn:swrl#day"/>
+                                                                                </swrl:DatavaluedPropertyAtom>
+                                                                              </rdf:first>
+                                                                              <rdf:rest>
+                                                                                <rdf:Description>
+                                                                                  <rdf:first>
+                                                                                    <swrl:IndividualPropertyAtom>
+                                                                                      <swrl:propertyPredicate rdf:resource="#isAtTimeslot"/>
+                                                                                      <swrl:argument1 rdf:resource="urn:swrl#L3"/>
+                                                                                      <swrl:argument2 rdf:resource="urn:swrl#s3"/>
+                                                                                    </swrl:IndividualPropertyAtom>
+                                                                                  </rdf:first>
+                                                                                  <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                      <rdf:first>
+                                                                                        <swrl:IndividualPropertyAtom>
+                                                                                          <swrl:propertyPredicate rdf:resource="#attends"/>
+                                                                                          <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                                                                                          <swrl:argument2 rdf:resource="urn:swrl#s3"/>
+                                                                                        </swrl:IndividualPropertyAtom>
+                                                                                      </rdf:first>
+                                                                                      <rdf:rest>
+                                                                                        <rdf:Description>
+                                                                                          <rdf:first>
+                                                                                            <swrl:DifferentIndividualsAtom>
+                                                                                              <swrl:argument1 rdf:resource="urn:swrl#L0"/>
+                                                                                              <swrl:argument2 rdf:resource="urn:swrl#L1"/>
+                                                                                            </swrl:DifferentIndividualsAtom>
+                                                                                          </rdf:first>
+                                                                                          <rdf:rest>
+                                                                                            <rdf:Description>
+                                                                                              <rdf:first>
+                                                                                                <swrl:DifferentIndividualsAtom>
+                                                                                                  <swrl:argument1 rdf:resource="urn:swrl#L0"/>
+                                                                                                  <swrl:argument2 rdf:resource="urn:swrl#L2"/>
+                                                                                                </swrl:DifferentIndividualsAtom>
+                                                                                              </rdf:first>
+                                                                                              <rdf:rest>
+                                                                                                <rdf:Description>
+                                                                                                  <rdf:first>
+                                                                                                    <swrl:DifferentIndividualsAtom>
+                                                                                                      <swrl:argument1 rdf:resource="urn:swrl#L0"/>
+                                                                                                      <swrl:argument2 rdf:resource="urn:swrl#L3"/>
+                                                                                                    </swrl:DifferentIndividualsAtom>
+                                                                                                  </rdf:first>
+                                                                                                  <rdf:rest>
+                                                                                                    <rdf:Description>
+                                                                                                      <rdf:first>
+                                                                                                        <swrl:DifferentIndividualsAtom>
+                                                                                                          <swrl:argument1 rdf:resource="urn:swrl#L1"/>
+                                                                                                          <swrl:argument2 rdf:resource="urn:swrl#L2"/>
+                                                                                                        </swrl:DifferentIndividualsAtom>
+                                                                                                      </rdf:first>
+                                                                                                      <rdf:rest>
+                                                                                                        <rdf:Description>
+                                                                                                          <rdf:first>
+                                                                                                            <swrl:DifferentIndividualsAtom>
+                                                                                                              <swrl:argument1 rdf:resource="urn:swrl#L1"/>
+                                                                                                              <swrl:argument2 rdf:resource="urn:swrl#L3"/>
+                                                                                                            </swrl:DifferentIndividualsAtom>
+                                                                                                          </rdf:first>
+                                                                                                          <rdf:rest>
+                                                                                                            <rdf:Description>
+                                                                                                              <rdf:first>
+                                                                                                                <swrl:DifferentIndividualsAtom>
+                                                                                                                  <swrl:argument1 rdf:resource="urn:swrl#L2"/>
+                                                                                                                  <swrl:argument2 rdf:resource="urn:swrl#L3"/>
+                                                                                                                </swrl:DifferentIndividualsAtom>
+                                                                                                              </rdf:first>
+                                                                                                              <rdf:rest>
+                                                                                                                <rdf:Description>
+                                                                                                                  <rdf:first>
+                                                                                                                    <swrl:BuiltinAtom>
+                                                                                                                      <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#stringConcat"/>
+                                                                                                                      <swrl:arguments>
+                                                                                                                        <rdf:Description>
+                                                                                                                          <rdf:first rdf:resource="urn:swrl#msg"/>
+                                                                                                                          <rdf:rest>
+                                                                                                                            <rdf:Description>
+                                                                                                                              <rdf:rest>
+                                                                                                                                <rdf:Description>
+                                                                                                                                  <rdf:first rdf:resource="urn:swrl#day"/>
+                                                                                                                                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                                                                                                </rdf:Description>
+                                                                                                                              </rdf:rest>
+                                                                                                                              <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Professor is overloaded at day </rdf:first>
+                                                                                                                            </rdf:Description>
+                                                                                                                          </rdf:rest>
+                                                                                                                        </rdf:Description>
+                                                                                                                      </swrl:arguments>
+                                                                                                                    </swrl:BuiltinAtom>
+                                                                                                                  </rdf:first>
+                                                                                                                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                                                                                </rdf:Description>
+                                                                                                              </rdf:rest>
+                                                                                                            </rdf:Description>
+                                                                                                          </rdf:rest>
+                                                                                                        </rdf:Description>
+                                                                                                      </rdf:rest>
+                                                                                                    </rdf:Description>
+                                                                                                  </rdf:rest>
+                                                                                                </rdf:Description>
+                                                                                              </rdf:rest>
+                                                                                            </rdf:Description>
+                                                                                          </rdf:rest>
+                                                                                        </rdf:Description>
+                                                                                      </rdf:rest>
+                                                                                    </rdf:Description>
+                                                                                  </rdf:rest>
+                                                                                </rdf:Description>
+                                                                              </rdf:rest>
+                                                                            </rdf:Description>
+                                                                          </rdf:rest>
+                                                                        </rdf:Description>
+                                                                      </rdf:rest>
+                                                                    </rdf:Description>
+                                                                  </rdf:rest>
+                                                                </rdf:Description>
+                                                              </rdf:rest>
+                                                            </rdf:Description>
+                                                          </rdf:rest>
+                                                        </rdf:Description>
+                                                      </rdf:rest>
                                                     </rdf:Description>
                                                   </rdf:rest>
                                                 </rdf:Description>
-                                              </swrl:arguments>
-                                            </swrl:BuiltinAtom>
-                                          </rdf:first>
-                                          <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                              </rdf:rest>
+                                            </rdf:Description>
+                                          </rdf:rest>
                                         </rdf:Description>
                                       </rdf:rest>
                                     </rdf:Description>
@@ -304,7 +1111,789 @@
         <swrl:DatavaluedPropertyAtom>
           <swrl:propertyPredicate rdf:resource="#hasError"/>
           <swrl:argument1 rdf:resource="#ERRORS"/>
-          <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Room overflow</swrl:argument2>
+          <swrl:argument2 rdf:resource="urn:swrl#msg"/>
+        </swrl:DatavaluedPropertyAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:head>
+</swrl:Imp>
+
+<swrl:Imp>
+  <swrl:body>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:ClassAtom>
+          <swrl:classPredicate rdf:resource="#Group"/>
+          <swrl:argument1 rdf:resource="urn:swrl#g"/>
+        </swrl:ClassAtom>
+      </rdf:first>
+      <rdf:rest>
+        <rdf:Description>
+          <rdf:first>
+            <swrl:ClassAtom>
+              <swrl:classPredicate rdf:resource="#Lesson"/>
+              <swrl:argument1 rdf:resource="urn:swrl#L0"/>
+            </swrl:ClassAtom>
+          </rdf:first>
+          <rdf:rest>
+            <rdf:Description>
+              <rdf:first>
+                <swrl:ClassAtom>
+                  <swrl:classPredicate rdf:resource="#Timeslot"/>
+                  <swrl:argument1 rdf:resource="urn:swrl#s0"/>
+                </swrl:ClassAtom>
+              </rdf:first>
+              <rdf:rest>
+                <rdf:Description>
+                  <rdf:first>
+                    <swrl:DatavaluedPropertyAtom>
+                      <swrl:propertyPredicate rdf:resource="#day"/>
+                      <swrl:argument1 rdf:resource="urn:swrl#s0"/>
+                      <swrl:argument2 rdf:resource="urn:swrl#day"/>
+                    </swrl:DatavaluedPropertyAtom>
+                  </rdf:first>
+                  <rdf:rest>
+                    <rdf:Description>
+                      <rdf:first>
+                        <swrl:IndividualPropertyAtom>
+                          <swrl:propertyPredicate rdf:resource="#isAtTimeslot"/>
+                          <swrl:argument1 rdf:resource="urn:swrl#L0"/>
+                          <swrl:argument2 rdf:resource="urn:swrl#s0"/>
+                        </swrl:IndividualPropertyAtom>
+                      </rdf:first>
+                      <rdf:rest>
+                        <rdf:Description>
+                          <rdf:first>
+                            <swrl:IndividualPropertyAtom>
+                              <swrl:propertyPredicate rdf:resource="#attends"/>
+                              <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                              <swrl:argument2 rdf:resource="urn:swrl#s0"/>
+                            </swrl:IndividualPropertyAtom>
+                          </rdf:first>
+                          <rdf:rest>
+                            <rdf:Description>
+                              <rdf:first>
+                                <swrl:ClassAtom>
+                                  <swrl:classPredicate rdf:resource="#Lesson"/>
+                                  <swrl:argument1 rdf:resource="urn:swrl#L1"/>
+                                </swrl:ClassAtom>
+                              </rdf:first>
+                              <rdf:rest>
+                                <rdf:Description>
+                                  <rdf:first>
+                                    <swrl:ClassAtom>
+                                      <swrl:classPredicate rdf:resource="#Timeslot"/>
+                                      <swrl:argument1 rdf:resource="urn:swrl#s1"/>
+                                    </swrl:ClassAtom>
+                                  </rdf:first>
+                                  <rdf:rest>
+                                    <rdf:Description>
+                                      <rdf:first>
+                                        <swrl:DatavaluedPropertyAtom>
+                                          <swrl:propertyPredicate rdf:resource="#day"/>
+                                          <swrl:argument1 rdf:resource="urn:swrl#s1"/>
+                                          <swrl:argument2 rdf:resource="urn:swrl#day"/>
+                                        </swrl:DatavaluedPropertyAtom>
+                                      </rdf:first>
+                                      <rdf:rest>
+                                        <rdf:Description>
+                                          <rdf:first>
+                                            <swrl:IndividualPropertyAtom>
+                                              <swrl:propertyPredicate rdf:resource="#isAtTimeslot"/>
+                                              <swrl:argument1 rdf:resource="urn:swrl#L1"/>
+                                              <swrl:argument2 rdf:resource="urn:swrl#s1"/>
+                                            </swrl:IndividualPropertyAtom>
+                                          </rdf:first>
+                                          <rdf:rest>
+                                            <rdf:Description>
+                                              <rdf:first>
+                                                <swrl:IndividualPropertyAtom>
+                                                  <swrl:propertyPredicate rdf:resource="#attends"/>
+                                                  <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                                                  <swrl:argument2 rdf:resource="urn:swrl#s1"/>
+                                                </swrl:IndividualPropertyAtom>
+                                              </rdf:first>
+                                              <rdf:rest>
+                                                <rdf:Description>
+                                                  <rdf:first>
+                                                    <swrl:ClassAtom>
+                                                      <swrl:classPredicate rdf:resource="#Lesson"/>
+                                                      <swrl:argument1 rdf:resource="urn:swrl#L2"/>
+                                                    </swrl:ClassAtom>
+                                                  </rdf:first>
+                                                  <rdf:rest>
+                                                    <rdf:Description>
+                                                      <rdf:first>
+                                                        <swrl:ClassAtom>
+                                                          <swrl:classPredicate rdf:resource="#Timeslot"/>
+                                                          <swrl:argument1 rdf:resource="urn:swrl#s2"/>
+                                                        </swrl:ClassAtom>
+                                                      </rdf:first>
+                                                      <rdf:rest>
+                                                        <rdf:Description>
+                                                          <rdf:first>
+                                                            <swrl:DatavaluedPropertyAtom>
+                                                              <swrl:propertyPredicate rdf:resource="#day"/>
+                                                              <swrl:argument1 rdf:resource="urn:swrl#s2"/>
+                                                              <swrl:argument2 rdf:resource="urn:swrl#day"/>
+                                                            </swrl:DatavaluedPropertyAtom>
+                                                          </rdf:first>
+                                                          <rdf:rest>
+                                                            <rdf:Description>
+                                                              <rdf:first>
+                                                                <swrl:IndividualPropertyAtom>
+                                                                  <swrl:propertyPredicate rdf:resource="#isAtTimeslot"/>
+                                                                  <swrl:argument1 rdf:resource="urn:swrl#L2"/>
+                                                                  <swrl:argument2 rdf:resource="urn:swrl#s2"/>
+                                                                </swrl:IndividualPropertyAtom>
+                                                              </rdf:first>
+                                                              <rdf:rest>
+                                                                <rdf:Description>
+                                                                  <rdf:first>
+                                                                    <swrl:IndividualPropertyAtom>
+                                                                      <swrl:propertyPredicate rdf:resource="#attends"/>
+                                                                      <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                                                                      <swrl:argument2 rdf:resource="urn:swrl#s2"/>
+                                                                    </swrl:IndividualPropertyAtom>
+                                                                  </rdf:first>
+                                                                  <rdf:rest>
+                                                                    <rdf:Description>
+                                                                      <rdf:first>
+                                                                        <swrl:ClassAtom>
+                                                                          <swrl:classPredicate rdf:resource="#Lesson"/>
+                                                                          <swrl:argument1 rdf:resource="urn:swrl#L3"/>
+                                                                        </swrl:ClassAtom>
+                                                                      </rdf:first>
+                                                                      <rdf:rest>
+                                                                        <rdf:Description>
+                                                                          <rdf:first>
+                                                                            <swrl:ClassAtom>
+                                                                              <swrl:classPredicate rdf:resource="#Timeslot"/>
+                                                                              <swrl:argument1 rdf:resource="urn:swrl#s3"/>
+                                                                            </swrl:ClassAtom>
+                                                                          </rdf:first>
+                                                                          <rdf:rest>
+                                                                            <rdf:Description>
+                                                                              <rdf:first>
+                                                                                <swrl:DatavaluedPropertyAtom>
+                                                                                  <swrl:propertyPredicate rdf:resource="#day"/>
+                                                                                  <swrl:argument1 rdf:resource="urn:swrl#s3"/>
+                                                                                  <swrl:argument2 rdf:resource="urn:swrl#day"/>
+                                                                                </swrl:DatavaluedPropertyAtom>
+                                                                              </rdf:first>
+                                                                              <rdf:rest>
+                                                                                <rdf:Description>
+                                                                                  <rdf:first>
+                                                                                    <swrl:IndividualPropertyAtom>
+                                                                                      <swrl:propertyPredicate rdf:resource="#isAtTimeslot"/>
+                                                                                      <swrl:argument1 rdf:resource="urn:swrl#L3"/>
+                                                                                      <swrl:argument2 rdf:resource="urn:swrl#s3"/>
+                                                                                    </swrl:IndividualPropertyAtom>
+                                                                                  </rdf:first>
+                                                                                  <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                      <rdf:first>
+                                                                                        <swrl:IndividualPropertyAtom>
+                                                                                          <swrl:propertyPredicate rdf:resource="#attends"/>
+                                                                                          <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                                                                                          <swrl:argument2 rdf:resource="urn:swrl#s3"/>
+                                                                                        </swrl:IndividualPropertyAtom>
+                                                                                      </rdf:first>
+                                                                                      <rdf:rest>
+                                                                                        <rdf:Description>
+                                                                                          <rdf:first>
+                                                                                            <swrl:ClassAtom>
+                                                                                              <swrl:classPredicate rdf:resource="#Lesson"/>
+                                                                                              <swrl:argument1 rdf:resource="urn:swrl#L4"/>
+                                                                                            </swrl:ClassAtom>
+                                                                                          </rdf:first>
+                                                                                          <rdf:rest>
+                                                                                            <rdf:Description>
+                                                                                              <rdf:first>
+                                                                                                <swrl:ClassAtom>
+                                                                                                  <swrl:classPredicate rdf:resource="#Timeslot"/>
+                                                                                                  <swrl:argument1 rdf:resource="urn:swrl#s4"/>
+                                                                                                </swrl:ClassAtom>
+                                                                                              </rdf:first>
+                                                                                              <rdf:rest>
+                                                                                                <rdf:Description>
+                                                                                                  <rdf:first>
+                                                                                                    <swrl:DatavaluedPropertyAtom>
+                                                                                                      <swrl:propertyPredicate rdf:resource="#day"/>
+                                                                                                      <swrl:argument1 rdf:resource="urn:swrl#s4"/>
+                                                                                                      <swrl:argument2 rdf:resource="urn:swrl#day"/>
+                                                                                                    </swrl:DatavaluedPropertyAtom>
+                                                                                                  </rdf:first>
+                                                                                                  <rdf:rest>
+                                                                                                    <rdf:Description>
+                                                                                                      <rdf:first>
+                                                                                                        <swrl:IndividualPropertyAtom>
+                                                                                                          <swrl:propertyPredicate rdf:resource="#isAtTimeslot"/>
+                                                                                                          <swrl:argument1 rdf:resource="urn:swrl#L4"/>
+                                                                                                          <swrl:argument2 rdf:resource="urn:swrl#s4"/>
+                                                                                                        </swrl:IndividualPropertyAtom>
+                                                                                                      </rdf:first>
+                                                                                                      <rdf:rest>
+                                                                                                        <rdf:Description>
+                                                                                                          <rdf:first>
+                                                                                                            <swrl:IndividualPropertyAtom>
+                                                                                                              <swrl:propertyPredicate rdf:resource="#attends"/>
+                                                                                                              <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                                                                                                              <swrl:argument2 rdf:resource="urn:swrl#s4"/>
+                                                                                                            </swrl:IndividualPropertyAtom>
+                                                                                                          </rdf:first>
+                                                                                                          <rdf:rest>
+                                                                                                            <rdf:Description>
+                                                                                                              <rdf:first>
+                                                                                                                <swrl:DifferentIndividualsAtom>
+                                                                                                                  <swrl:argument1 rdf:resource="urn:swrl#L0"/>
+                                                                                                                  <swrl:argument2 rdf:resource="urn:swrl#L1"/>
+                                                                                                                </swrl:DifferentIndividualsAtom>
+                                                                                                              </rdf:first>
+                                                                                                              <rdf:rest>
+                                                                                                                <rdf:Description>
+                                                                                                                  <rdf:first>
+                                                                                                                    <swrl:DifferentIndividualsAtom>
+                                                                                                                      <swrl:argument1 rdf:resource="urn:swrl#L0"/>
+                                                                                                                      <swrl:argument2 rdf:resource="urn:swrl#L2"/>
+                                                                                                                    </swrl:DifferentIndividualsAtom>
+                                                                                                                  </rdf:first>
+                                                                                                                  <rdf:rest>
+                                                                                                                    <rdf:Description>
+                                                                                                                      <rdf:first>
+                                                                                                                        <swrl:DifferentIndividualsAtom>
+                                                                                                                          <swrl:argument1 rdf:resource="urn:swrl#L0"/>
+                                                                                                                          <swrl:argument2 rdf:resource="urn:swrl#L3"/>
+                                                                                                                        </swrl:DifferentIndividualsAtom>
+                                                                                                                      </rdf:first>
+                                                                                                                      <rdf:rest>
+                                                                                                                        <rdf:Description>
+                                                                                                                          <rdf:first>
+                                                                                                                            <swrl:DifferentIndividualsAtom>
+                                                                                                                              <swrl:argument1 rdf:resource="urn:swrl#L0"/>
+                                                                                                                              <swrl:argument2 rdf:resource="urn:swrl#L4"/>
+                                                                                                                            </swrl:DifferentIndividualsAtom>
+                                                                                                                          </rdf:first>
+                                                                                                                          <rdf:rest>
+                                                                                                                            <rdf:Description>
+                                                                                                                              <rdf:first>
+                                                                                                                                <swrl:DifferentIndividualsAtom>
+                                                                                                                                  <swrl:argument1 rdf:resource="urn:swrl#L1"/>
+                                                                                                                                  <swrl:argument2 rdf:resource="urn:swrl#L2"/>
+                                                                                                                                </swrl:DifferentIndividualsAtom>
+                                                                                                                              </rdf:first>
+                                                                                                                              <rdf:rest>
+                                                                                                                                <rdf:Description>
+                                                                                                                                  <rdf:first>
+                                                                                                                                    <swrl:DifferentIndividualsAtom>
+                                                                                                                                      <swrl:argument1 rdf:resource="urn:swrl#L1"/>
+                                                                                                                                      <swrl:argument2 rdf:resource="urn:swrl#L3"/>
+                                                                                                                                    </swrl:DifferentIndividualsAtom>
+                                                                                                                                  </rdf:first>
+                                                                                                                                  <rdf:rest>
+                                                                                                                                    <rdf:Description>
+                                                                                                                                      <rdf:first>
+                                                                                                                                        <swrl:DifferentIndividualsAtom>
+                                                                                                                                          <swrl:argument1 rdf:resource="urn:swrl#L1"/>
+                                                                                                                                          <swrl:argument2 rdf:resource="urn:swrl#L4"/>
+                                                                                                                                        </swrl:DifferentIndividualsAtom>
+                                                                                                                                      </rdf:first>
+                                                                                                                                      <rdf:rest>
+                                                                                                                                        <rdf:Description>
+                                                                                                                                          <rdf:first>
+                                                                                                                                            <swrl:DifferentIndividualsAtom>
+                                                                                                                                              <swrl:argument1 rdf:resource="urn:swrl#L2"/>
+                                                                                                                                              <swrl:argument2 rdf:resource="urn:swrl#L3"/>
+                                                                                                                                            </swrl:DifferentIndividualsAtom>
+                                                                                                                                          </rdf:first>
+                                                                                                                                          <rdf:rest>
+                                                                                                                                            <rdf:Description>
+                                                                                                                                              <rdf:first>
+                                                                                                                                                <swrl:DifferentIndividualsAtom>
+                                                                                                                                                  <swrl:argument1 rdf:resource="urn:swrl#L2"/>
+                                                                                                                                                  <swrl:argument2 rdf:resource="urn:swrl#L4"/>
+                                                                                                                                                </swrl:DifferentIndividualsAtom>
+                                                                                                                                              </rdf:first>
+                                                                                                                                              <rdf:rest>
+                                                                                                                                                <rdf:Description>
+                                                                                                                                                  <rdf:first>
+                                                                                                                                                    <swrl:DifferentIndividualsAtom>
+                                                                                                                                                      <swrl:argument1 rdf:resource="urn:swrl#L3"/>
+                                                                                                                                                      <swrl:argument2 rdf:resource="urn:swrl#L4"/>
+                                                                                                                                                    </swrl:DifferentIndividualsAtom>
+                                                                                                                                                  </rdf:first>
+                                                                                                                                                  <rdf:rest>
+                                                                                                                                                    <rdf:Description>
+                                                                                                                                                      <rdf:first>
+                                                                                                                                                        <swrl:BuiltinAtom>
+                                                                                                                                                          <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#stringConcat"/>
+                                                                                                                                                          <swrl:arguments>
+                                                                                                                                                            <rdf:Description>
+                                                                                                                                                              <rdf:first rdf:resource="urn:swrl#msg"/>
+                                                                                                                                                              <rdf:rest>
+                                                                                                                                                                <rdf:Description>
+                                                                                                                                                                  <rdf:rest>
+                                                                                                                                                                    <rdf:Description>
+                                                                                                                                                                      <rdf:first rdf:resource="urn:swrl#day"/>
+                                                                                                                                                                      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                                                                                                                                    </rdf:Description>
+                                                                                                                                                                  </rdf:rest>
+                                                                                                                                                                  <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Group is overloaded at day </rdf:first>
+                                                                                                                                                                </rdf:Description>
+                                                                                                                                                              </rdf:rest>
+                                                                                                                                                            </rdf:Description>
+                                                                                                                                                          </swrl:arguments>
+                                                                                                                                                        </swrl:BuiltinAtom>
+                                                                                                                                                      </rdf:first>
+                                                                                                                                                      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                                                                                                                    </rdf:Description>
+                                                                                                                                                  </rdf:rest>
+                                                                                                                                                </rdf:Description>
+                                                                                                                                              </rdf:rest>
+                                                                                                                                            </rdf:Description>
+                                                                                                                                          </rdf:rest>
+                                                                                                                                        </rdf:Description>
+                                                                                                                                      </rdf:rest>
+                                                                                                                                    </rdf:Description>
+                                                                                                                                  </rdf:rest>
+                                                                                                                                </rdf:Description>
+                                                                                                                              </rdf:rest>
+                                                                                                                            </rdf:Description>
+                                                                                                                          </rdf:rest>
+                                                                                                                        </rdf:Description>
+                                                                                                                      </rdf:rest>
+                                                                                                                    </rdf:Description>
+                                                                                                                  </rdf:rest>
+                                                                                                                </rdf:Description>
+                                                                                                              </rdf:rest>
+                                                                                                            </rdf:Description>
+                                                                                                          </rdf:rest>
+                                                                                                        </rdf:Description>
+                                                                                                      </rdf:rest>
+                                                                                                    </rdf:Description>
+                                                                                                  </rdf:rest>
+                                                                                                </rdf:Description>
+                                                                                              </rdf:rest>
+                                                                                            </rdf:Description>
+                                                                                          </rdf:rest>
+                                                                                        </rdf:Description>
+                                                                                      </rdf:rest>
+                                                                                    </rdf:Description>
+                                                                                  </rdf:rest>
+                                                                                </rdf:Description>
+                                                                              </rdf:rest>
+                                                                            </rdf:Description>
+                                                                          </rdf:rest>
+                                                                        </rdf:Description>
+                                                                      </rdf:rest>
+                                                                    </rdf:Description>
+                                                                  </rdf:rest>
+                                                                </rdf:Description>
+                                                              </rdf:rest>
+                                                            </rdf:Description>
+                                                          </rdf:rest>
+                                                        </rdf:Description>
+                                                      </rdf:rest>
+                                                    </rdf:Description>
+                                                  </rdf:rest>
+                                                </rdf:Description>
+                                              </rdf:rest>
+                                            </rdf:Description>
+                                          </rdf:rest>
+                                        </rdf:Description>
+                                      </rdf:rest>
+                                    </rdf:Description>
+                                  </rdf:rest>
+                                </rdf:Description>
+                              </rdf:rest>
+                            </rdf:Description>
+                          </rdf:rest>
+                        </rdf:Description>
+                      </rdf:rest>
+                    </rdf:Description>
+                  </rdf:rest>
+                </rdf:Description>
+              </rdf:rest>
+            </rdf:Description>
+          </rdf:rest>
+        </rdf:Description>
+      </rdf:rest>
+    </rdf:Description>
+  </swrl:body>
+  <swrl:head>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:DatavaluedPropertyAtom>
+          <swrl:propertyPredicate rdf:resource="#hasError"/>
+          <swrl:argument1 rdf:resource="#ERRORS"/>
+          <swrl:argument2 rdf:resource="urn:swrl#msg"/>
+        </swrl:DatavaluedPropertyAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:head>
+</swrl:Imp>
+
+<swrl:Imp>
+  <swrl:body>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:ClassAtom>
+          <swrl:classPredicate rdf:resource="#Lesson"/>
+          <swrl:argument1 rdf:resource="urn:swrl#L"/>
+        </swrl:ClassAtom>
+      </rdf:first>
+      <rdf:rest>
+        <rdf:Description>
+          <rdf:first>
+            <swrl:ClassAtom>
+              <swrl:classPredicate rdf:resource="#SubjAssignment"/>
+              <swrl:argument1 rdf:resource="urn:swrl#sa"/>
+            </swrl:ClassAtom>
+          </rdf:first>
+          <rdf:rest>
+            <rdf:Description>
+              <rdf:first>
+                <swrl:ClassAtom>
+                  <swrl:classPredicate rdf:resource="#Professor"/>
+                  <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                </swrl:ClassAtom>
+              </rdf:first>
+              <rdf:rest>
+                <rdf:Description>
+                  <rdf:first>
+                    <swrl:IndividualPropertyAtom>
+                      <swrl:propertyPredicate rdf:resource="#hasLearningAssignment"/>
+                      <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                      <swrl:argument2 rdf:resource="urn:swrl#sa"/>
+                    </swrl:IndividualPropertyAtom>
+                  </rdf:first>
+                  <rdf:rest>
+                    <rdf:Description>
+                      <rdf:first>
+                        <swrl:IndividualPropertyAtom>
+                          <swrl:propertyPredicate rdf:resource="#realizes"/>
+                          <swrl:argument1 rdf:resource="urn:swrl#L"/>
+                          <swrl:argument2 rdf:resource="urn:swrl#sa"/>
+                        </swrl:IndividualPropertyAtom>
+                      </rdf:first>
+                      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                  </rdf:rest>
+                </rdf:Description>
+              </rdf:rest>
+            </rdf:Description>
+          </rdf:rest>
+        </rdf:Description>
+      </rdf:rest>
+    </rdf:Description>
+  </swrl:body>
+  <swrl:head>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:IndividualPropertyAtom>
+          <swrl:propertyPredicate rdf:resource="#attends"/>
+          <swrl:argument1 rdf:resource="urn:swrl#p"/>
+          <swrl:argument2 rdf:resource="urn:swrl#L"/>
+        </swrl:IndividualPropertyAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:head>
+</swrl:Imp>
+
+<swrl:Imp>
+  <swrl:body>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:ClassAtom>
+          <swrl:classPredicate rdf:resource="#Lesson"/>
+          <swrl:argument1 rdf:resource="urn:swrl#L"/>
+        </swrl:ClassAtom>
+      </rdf:first>
+      <rdf:rest>
+        <rdf:Description>
+          <rdf:first>
+            <swrl:ClassAtom>
+              <swrl:classPredicate rdf:resource="#SubjAssignment"/>
+              <swrl:argument1 rdf:resource="urn:swrl#sa"/>
+            </swrl:ClassAtom>
+          </rdf:first>
+          <rdf:rest>
+            <rdf:Description>
+              <rdf:first>
+                <swrl:ClassAtom>
+                  <swrl:classPredicate rdf:resource="#Group"/>
+                  <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                </swrl:ClassAtom>
+              </rdf:first>
+              <rdf:rest>
+                <rdf:Description>
+                  <rdf:first>
+                    <swrl:IndividualPropertyAtom>
+                      <swrl:propertyPredicate rdf:resource="#hasLearningAssignment"/>
+                      <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                      <swrl:argument2 rdf:resource="urn:swrl#sa"/>
+                    </swrl:IndividualPropertyAtom>
+                  </rdf:first>
+                  <rdf:rest>
+                    <rdf:Description>
+                      <rdf:first>
+                        <swrl:IndividualPropertyAtom>
+                          <swrl:propertyPredicate rdf:resource="#realizes"/>
+                          <swrl:argument1 rdf:resource="urn:swrl#L"/>
+                          <swrl:argument2 rdf:resource="urn:swrl#sa"/>
+                        </swrl:IndividualPropertyAtom>
+                      </rdf:first>
+                      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                  </rdf:rest>
+                </rdf:Description>
+              </rdf:rest>
+            </rdf:Description>
+          </rdf:rest>
+        </rdf:Description>
+      </rdf:rest>
+    </rdf:Description>
+  </swrl:body>
+  <swrl:head>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:IndividualPropertyAtom>
+          <swrl:propertyPredicate rdf:resource="#attends"/>
+          <swrl:argument1 rdf:resource="urn:swrl#g"/>
+          <swrl:argument2 rdf:resource="urn:swrl#L"/>
+        </swrl:IndividualPropertyAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:head>
+</swrl:Imp>
+
+<swrl:Imp>
+  <swrl:body>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:ClassAtom>
+          <swrl:classPredicate rdf:resource="#Room"/>
+          <swrl:argument1 rdf:resource="urn:swrl#r"/>
+        </swrl:ClassAtom>
+      </rdf:first>
+      <rdf:rest>
+        <rdf:Description>
+          <rdf:first>
+            <swrl:ClassAtom>
+              <swrl:classPredicate rdf:resource="#Lesson"/>
+              <swrl:argument1 rdf:resource="urn:swrl#L"/>
+            </swrl:ClassAtom>
+          </rdf:first>
+          <rdf:rest>
+            <rdf:Description>
+              <rdf:first>
+                <swrl:ClassAtom>
+                  <swrl:classPredicate rdf:resource="#SubjAssignment"/>
+                  <swrl:argument1 rdf:resource="urn:swrl#sa"/>
+                </swrl:ClassAtom>
+              </rdf:first>
+              <rdf:rest>
+                <rdf:Description>
+                  <rdf:first>
+                    <swrl:ClassAtom>
+                      <swrl:classPredicate rdf:resource="#Group"/>
+                      <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                    </swrl:ClassAtom>
+                  </rdf:first>
+                  <rdf:rest>
+                    <rdf:Description>
+                      <rdf:first>
+                        <swrl:IndividualPropertyAtom>
+                          <swrl:propertyPredicate rdf:resource="#attends"/>
+                          <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                          <swrl:argument2 rdf:resource="urn:swrl#L"/>
+                        </swrl:IndividualPropertyAtom>
+                      </rdf:first>
+                      <rdf:rest>
+                        <rdf:Description>
+                          <rdf:first>
+                            <swrl:IndividualPropertyAtom>
+                              <swrl:propertyPredicate rdf:resource="#takesPlace"/>
+                              <swrl:argument1 rdf:resource="urn:swrl#L"/>
+                              <swrl:argument2 rdf:resource="urn:swrl#r"/>
+                            </swrl:IndividualPropertyAtom>
+                          </rdf:first>
+                          <rdf:rest>
+                            <rdf:Description>
+                              <rdf:first>
+                                <swrl:DatavaluedPropertyAtom>
+                                  <swrl:propertyPredicate rdf:resource="#capacity"/>
+                                  <swrl:argument1 rdf:resource="urn:swrl#r"/>
+                                  <swrl:argument2 rdf:resource="urn:swrl#cap"/>
+                                </swrl:DatavaluedPropertyAtom>
+                              </rdf:first>
+                              <rdf:rest>
+                                <rdf:Description>
+                                  <rdf:first>
+                                    <swrl:DatavaluedPropertyAtom>
+                                      <swrl:propertyPredicate rdf:resource="#size"/>
+                                      <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                                      <swrl:argument2 rdf:resource="urn:swrl#n"/>
+                                    </swrl:DatavaluedPropertyAtom>
+                                  </rdf:first>
+                                  <rdf:rest>
+                                    <rdf:Description>
+                                      <rdf:first>
+                                        <swrl:BuiltinAtom>
+                                          <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#lessThan"/>
+                                          <swrl:arguments>
+                                            <rdf:Description>
+                                              <rdf:first rdf:resource="urn:swrl#cap"/>
+                                              <rdf:rest>
+                                                <rdf:Description>
+                                                  <rdf:first rdf:resource="urn:swrl#n"/>
+                                                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                </rdf:Description>
+                                              </rdf:rest>
+                                            </rdf:Description>
+                                          </swrl:arguments>
+                                        </swrl:BuiltinAtom>
+                                      </rdf:first>
+                                      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                  </rdf:rest>
+                                </rdf:Description>
+                              </rdf:rest>
+                            </rdf:Description>
+                          </rdf:rest>
+                        </rdf:Description>
+                      </rdf:rest>
+                    </rdf:Description>
+                  </rdf:rest>
+                </rdf:Description>
+              </rdf:rest>
+            </rdf:Description>
+          </rdf:rest>
+        </rdf:Description>
+      </rdf:rest>
+    </rdf:Description>
+  </swrl:body>
+  <swrl:head>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:DatavaluedPropertyAtom>
+          <swrl:propertyPredicate rdf:resource="#hasError"/>
+          <swrl:argument1 rdf:resource="#ERRORS"/>
+          <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Room overflow with students</swrl:argument2>
+        </swrl:DatavaluedPropertyAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:head>
+</swrl:Imp>
+
+<swrl:Imp>
+  <swrl:body>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:ClassAtom>
+          <swrl:classPredicate rdf:resource="#Room"/>
+          <swrl:argument1 rdf:resource="urn:swrl#r"/>
+        </swrl:ClassAtom>
+      </rdf:first>
+      <rdf:rest>
+        <rdf:Description>
+          <rdf:first>
+            <swrl:ClassAtom>
+              <swrl:classPredicate rdf:resource="#Timeslot"/>
+              <swrl:argument1 rdf:resource="urn:swrl#s"/>
+            </swrl:ClassAtom>
+          </rdf:first>
+          <rdf:rest>
+            <rdf:Description>
+              <rdf:first>
+                <swrl:ClassAtom>
+                  <swrl:classPredicate rdf:resource="#Lesson"/>
+                  <swrl:argument1 rdf:resource="urn:swrl#L1"/>
+                </swrl:ClassAtom>
+              </rdf:first>
+              <rdf:rest>
+                <rdf:Description>
+                  <rdf:first>
+                    <swrl:ClassAtom>
+                      <swrl:classPredicate rdf:resource="#Lesson"/>
+                      <swrl:argument1 rdf:resource="urn:swrl#L2"/>
+                    </swrl:ClassAtom>
+                  </rdf:first>
+                  <rdf:rest>
+                    <rdf:Description>
+                      <rdf:first>
+                        <swrl:DifferentIndividualsAtom>
+                          <swrl:argument1 rdf:resource="urn:swrl#L1"/>
+                          <swrl:argument2 rdf:resource="urn:swrl#L2"/>
+                        </swrl:DifferentIndividualsAtom>
+                      </rdf:first>
+                      <rdf:rest>
+                        <rdf:Description>
+                          <rdf:first>
+                            <swrl:IndividualPropertyAtom>
+                              <swrl:propertyPredicate rdf:resource="#isAtTimeslot"/>
+                              <swrl:argument1 rdf:resource="urn:swrl#L1"/>
+                              <swrl:argument2 rdf:resource="urn:swrl#s"/>
+                            </swrl:IndividualPropertyAtom>
+                          </rdf:first>
+                          <rdf:rest>
+                            <rdf:Description>
+                              <rdf:first>
+                                <swrl:IndividualPropertyAtom>
+                                  <swrl:propertyPredicate rdf:resource="#isAtTimeslot"/>
+                                  <swrl:argument1 rdf:resource="urn:swrl#L2"/>
+                                  <swrl:argument2 rdf:resource="urn:swrl#s"/>
+                                </swrl:IndividualPropertyAtom>
+                              </rdf:first>
+                              <rdf:rest>
+                                <rdf:Description>
+                                  <rdf:first>
+                                    <swrl:IndividualPropertyAtom>
+                                      <swrl:propertyPredicate rdf:resource="#takesPlace"/>
+                                      <swrl:argument1 rdf:resource="urn:swrl#L1"/>
+                                      <swrl:argument2 rdf:resource="urn:swrl#r"/>
+                                    </swrl:IndividualPropertyAtom>
+                                  </rdf:first>
+                                  <rdf:rest>
+                                    <rdf:Description>
+                                      <rdf:first>
+                                        <swrl:IndividualPropertyAtom>
+                                          <swrl:propertyPredicate rdf:resource="#takesPlace"/>
+                                          <swrl:argument1 rdf:resource="urn:swrl#L2"/>
+                                          <swrl:argument2 rdf:resource="urn:swrl#r"/>
+                                        </swrl:IndividualPropertyAtom>
+                                      </rdf:first>
+                                      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                  </rdf:rest>
+                                </rdf:Description>
+                              </rdf:rest>
+                            </rdf:Description>
+                          </rdf:rest>
+                        </rdf:Description>
+                      </rdf:rest>
+                    </rdf:Description>
+                  </rdf:rest>
+                </rdf:Description>
+              </rdf:rest>
+            </rdf:Description>
+          </rdf:rest>
+        </rdf:Description>
+      </rdf:rest>
+    </rdf:Description>
+  </swrl:body>
+  <swrl:head>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:DatavaluedPropertyAtom>
+          <swrl:propertyPredicate rdf:resource="#hasError"/>
+          <swrl:argument1 rdf:resource="#ERRORS"/>
+          <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lessons clash at Room</swrl:argument2>
         </swrl:DatavaluedPropertyAtom>
       </rdf:first>
       <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
