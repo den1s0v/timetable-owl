@@ -27,33 +27,39 @@ def make_timetable_schema(onto, settings):
 		class Subject(Thing): pass
 		class SubjAssignment(Thing): pass
 		class Professor(Thing): pass
+		
+		Timeslot.comment.append("Дни (d) нумеруются: с 1 (ПН) по 5 (ПТ), затем 6 (ПН) и до 10 (ПТ)")
+		Timeslot.comment.append("Часы (h) нумеруются номерами пар: 1 (с 8:30 по 10:00) по 6 (с 17:00 по 18:30)")
+				
 				
 		######## General Properties ########
 		
 		# >
-		class referencesTo( FunctionalProperty, AsymmetricProperty, IrreflexiveProperty): pass  # direct part
-		class referencedBy( InverseFunctionalProperty, AsymmetricProperty, IrreflexiveProperty): pass  # direct part
+		# class referencesTo( AsymmetricProperty, IrreflexiveProperty): pass  # direct part
+		# class referencedBy( InverseFunctionalProperty, AsymmetricProperty, IrreflexiveProperty): pass  # direct part
 		# >
-		class hasPart( FunctionalProperty, AsymmetricProperty, IrreflexiveProperty): pass  # direct part
+		# class isPartOf( FunctionalProperty, AsymmetricProperty, IrreflexiveProperty): pass  # direct part
 		# >
 			# class hasSibling( FunctionalProperty, InverseFunctionalProperty, AsymmetricProperty, IrreflexiveProperty): pass  # (directed) base for any Next
 			# >
 			# class hasPartTransitive( TransitiveProperty,  # transitive !
 			# 	FunctionalProperty, AsymmetricProperty, IrreflexiveProperty): pass  # base for FirstAct
 		# >
-		class hasUniqueData( FunctionalProperty, DataProperty): pass  # datatype property base
-
+		# class hasUniqueData( FunctionalProperty, DataProperty): pass  # datatype property base
+		referencesToUnique = [FunctionalProperty, AsymmetricProperty, IrreflexiveProperty]
+		referencedByUnique = [InverseFunctionalProperty, AsymmetricProperty, IrreflexiveProperty]
+		hasUniqueData = [FunctionalProperty, DataProperty]
 
 
 		# Object properties
 		
-		class isPartOfTimetable( TimetableElement >> Timetable , hasPart): pass
-		class takesPlace( Lesson >> Room , referencesTo): pass
-		class isAtTimeslot( Lesson >> Timeslot , referencesTo): pass  # 0..*  -->  1 ; no ~~InverseFunctionalProperty~~ here
-		class realizes( Lesson >> SubjAssignment , referencesTo): pass
-		class hasLearningAssignment( Group >> SubjAssignment , referencedBy): pass
-		class hasTeachingAssignment( Professor >> SubjAssignment , referencedBy): pass
-		class hasSubject( SubjAssignment >> Subject , referencesTo): pass
+		class isPartOfTimetable( 	TimetableElement >> Timetable , *referencesToUnique): pass
+		class takesPlace( 			Lesson >> Room , 				*referencesToUnique): pass
+		class isAtTimeslot( 		Lesson >> Timeslot , 			*referencesToUnique): pass  # 0..*  -->  1 ; no ~~InverseFunctionalProperty~~ here
+		class realizes( 			Lesson >> SubjAssignment , 		*referencesToUnique): pass
+		class hasLearningAssignment( Group >> SubjAssignment , 		*referencedByUnique): pass
+		class hasTeachingAssignment( Professor >> SubjAssignment , 	*referencedByUnique): pass
+		class hasSubject( 			SubjAssignment >> Subject , 	*referencesToUnique): pass
 
 
 		# Derived Object properties
@@ -63,21 +69,23 @@ def make_timetable_schema(onto, settings):
 		
 		# Data properties
 		
-		class weekDays( Timetable >> int , hasUniqueData): pass
-		class dayHours( Timetable >> int , hasUniqueData): pass
-		class maxGroupHours( Timetable >> int , hasUniqueData): pass
-		class maxProfHours ( Timetable >> int , hasUniqueData): pass
+		class weekDays( 	Timetable >> int , *hasUniqueData): pass
+		class dayHours( 	Timetable >> int , *hasUniqueData): pass
+		class maxGroupHours( Timetable >> int , *hasUniqueData): pass
+		class maxProfHours ( Timetable >> int , *hasUniqueData): pass
 		
-		class capacity( Room >> int , hasUniqueData): pass
+		class capacity( Room >> int , *hasUniqueData): pass
 		
-		class day ( Timeslot >> int , hasUniqueData): pass
-		class hour( Timeslot >> int , hasUniqueData): pass
+		class day ( Timeslot >> int , *hasUniqueData): pass
+		class hour( Timeslot >> int , *hasUniqueData): pass
 		
-		class size( Group >> int , hasUniqueData): pass
+		class size( Group >> int , *hasUniqueData): pass
 
 		
-		class name( (Group | Professor | Subject | Room) >> str , hasUniqueData): pass
-		class hours( SubjAssignment >> int , hasUniqueData): pass
+		# class hasName( (Or([Group,Professor,Subject,Room,Lesson])) >> str , *hasUniqueData): pass
+		class hasName( Lesson >> str , *hasUniqueData): pass
+		
+		# class hours( SubjAssignment >> int , *hasUniqueData): pass
 		
 		
 		# persistent instances (global objects)
@@ -87,7 +95,8 @@ def make_timetable_schema(onto, settings):
 		t.maxGroupHours = settings["maxGroupHours"]
 		t.maxProfHours 	= settings["maxProfHours"]
 		
-		# Prepare empty timeslots for a week
+		# Prepare empty timeslots for a week.
+		# Format:  d<d>_h<h>  (see name4timeslot() function)
 		for d in range(1, 1+t.weekDays):
 			for h in range(1, 1+t.dayHours):
 				name = name4timeslot(d, h)
@@ -96,8 +105,8 @@ def make_timetable_schema(onto, settings):
 				slot.day  = d
 				slot.hour = h
 				
-				
-		close_world(Timeslot)
+		# CLOSE WORLD around all the Timeslot individuals - experimental for the lab!
+		# close_world(Timeslot)
 			
 		
 		# SWRL Rules
@@ -116,18 +125,22 @@ DifferentFrom(?L1, ?L2),
 isAtTimeslot(?L1, ?s),
 isAtTimeslot(?L2, ?s),
 takesPlace(?L1, ?r),
-takesPlace(?L2, ?r)
- -> hasError(ERRORS, "Lessons clash at Room")
+takesPlace(?L2, ?r),
+hasName(?L1, ?Lname),
+stringConcat(?msg, "Lessons clash at Room. One is: ", ?Lname)
+ -> hasError(ERRORS, ?msg)
  """)
 		# `differentFrom` -> `DifferentFrom` in owlready2 !!!
 # 2. Вместимость аудитории менее численности группы, занятие у которой там проходит
 		Imp().set_as_rule("""
-Room(?r), Lesson(?L), SubjAssignment(?sa), Group(?g), 
+Room(?r), Lesson(?L), Group(?g), 
 attends(?g, ?L),
 takesPlace(?L, ?r),
 capacity(?r, ?cap), size(?g, ?n), 
-lessThan(?cap, ?n)
- -> hasError(ERRORS, "Room overflow with students")
+lessThan(?cap, ?n),
+hasName(?L, ?Lname),
+stringConcat(?msg, "Room overflow with students at lesson: ", ?Lname)
+ -> hasError(ERRORS, ?msg)
 """)
 # 3.1 Вывод attends из назначения для Group
 		Imp().set_as_rule("""
@@ -139,7 +152,7 @@ realizes(?L, ?sa)
 # 3.2 Вывод attends из назначения для Professor
 		Imp().set_as_rule("""
 Lesson(?L), SubjAssignment(?sa), Professor(?p), 
-hasLearningAssignment(?p, ?sa), 
+hasTeachingAssignment(?p, ?sa), 
 realizes(?L, ?sa)
  -> attends(?p, ?L)
 """)
@@ -157,54 +170,57 @@ def make_overload_rule(subj='Group', max_lessons=4):
     from operator import add
     import itertools
 
-    linear_template = '''Lesson(?L{i}), Timeslot(?s{i}), day(?s{i}, ?day), 
-	isAtTimeslot(?L{i}, ?s{i}), attends(?g, ?s{i}), 
+    linear_template = '''Lesson(?L{i}), Timeslot(?s{i}), day(?s{i}, ?d), 
+	isAtTimeslot(?L{i}, ?s{i}), attends(?g, ?L{i}), 
 	'''
     LessonTimeslot_declare = reduce(add, [linear_template.format(i=i) for i in range(n_excceed)])
     
-    comb_template = '''DifferentFrom(?L{i}, ?L{j}), 
+    # comb_template = '''DifferentFrom(?L{i}, ?L{j}), 
+    comb_template = '''DifferentFrom(?s{i}, ?s{j}), 
 	'''
     differenceAssertions_declare = reduce(add, [comb_template.format(i=i, j=j) for i,j in itertools.combinations(range(n_excceed), 2)])
     
     return """
 	{subj}(?g), 
 	{LessonTimeslot_declare}{differenceAssertions_declare}
-	stringConcat(?msg, "{subj} is overloaded at day ", ?day)
-	 -> hasError(ERRORS, ?msg)		
+	stringConcat(?msg, "{subj} is overloaded at day ", ?d)
+	 -> hasError(ERRORS, ?msg)
 	""".format(subj=subj, LessonTimeslot_declare=LessonTimeslot_declare, differenceAssertions_declare=differenceAssertions_declare)
 
 def name4timeslot(d=1, h=1):
-	return "slot%d_%d" % (d, h)
+	# return "slot%d_%d" % (d, h)
+	return "d%d_h%d" % (d, h)
 		
 
-
-def set_instances(onto, prop_list):
-	
-	""" prop_list: list of dicts:
-	{
-		"class": any_WL_Class,
-		"names": list of str,
-	}  """
-	
-	with onto:
-		for prop in prop_list:
-			cl = prop["class"]
-			for name in prop["names"]:
-				cl.__call__(name)  # make an individual
 				
 def assign(onto, prof_name, subject_name, group_name):
 	''' Bings the three to new SubjAssignment node and returns the node '''
-	prof 	= Professor(prof_name)
-	subject = Subject(subject_name)
-	group 	= Group(group_name)
+	prof 	= onto.Professor(prof_name)
+	subject = onto.Subject(subject_name)
+	group 	= onto.Group(group_name)
 	sa_name = '%s-%s-%s' % (prof_name, subject_name, group_name)
 	sa_name = ''.join(sa_name.split())  # remove all whitespaces
 	with onto:
-		sa = SubjAssignment(sa_name)
-		sa.hasSubject.append(subject)
+		sa = onto.SubjAssignment(sa_name)
+		sa.hasSubject = subject  # sa.hasSubject.append(subject)  if sa.hasSubject  else [subject]
 		prof.hasTeachingAssignment.append(sa)
-		group.hasTeachingAssignment.append(sa)
+		group.hasLearningAssignment.append(sa)
 	return sa
+	
+def setLesson(onto, sa, room_name, timeslot_name):
+	''' Bings the three to new Lesson node and returns the node 
+	Note `sa` is object while'''
+	room 	= onto.Room(room_name)
+	timeslot= onto.Timeslot(timeslot_name)
+	lesson_name = '%s_in%s_@%s' % (sa.name, room_name, timeslot_name)
+	with onto:
+		lesson 	= onto.Lesson(lesson_name)
+		lesson.hasName = lesson_name
+		lesson.realizes = sa
+		lesson.isAtTimeslot = timeslot
+		lesson.takesPlace = room
+		lesson.isPartOfTimetable = onto.TABLE
+	return lesson
 				
 
 def upload_rdf_to_SPARQL_endpoint(graphStore_url, rdf_file_path):
@@ -225,31 +241,103 @@ def upload_rdf_to_SPARQL_endpoint(graphStore_url, rdf_file_path):
 
 ###############################################################
 
+
+def fill_ok_timetable(onto):
+	
+	with onto:
+		# we may omit declaration property-less individuals; they will be created on first access.
+		# onto.Professor('Орлова')
+		# onto.Professor('Игнатьев')
+		# onto.Professor('Гилка')
+		# onto.Professor('Пром')
+		# onto.Professor('Аникин')
+		# onto.Professor('Мига')
+		# onto.Professor('Литовкин')
+		
+		# onto.Subject('НИР')
+		# onto.Subject('АнализДанных')
+		# onto.Subject('Английский')
+		# onto.Subject('СУБД')
+		# onto.Subject('БазыДанных')
+		# onto.Subject('AБAБЫ')
+		# onto.Subject('Программирование')
+		
+		# declare properties for concrete individuals to use further
+		onto.Group('ПОАС1.1', size = 12)
+		onto.Group('ПОАС1.2', size = 11)
+		onto.Group('ПрИн-266', size = 18)
+		
+		onto.Room('902').capacity = 50
+		onto.Room('903').capacity = 20
+		onto.Room('1003').capacity = 27
+		onto.Room('300а').capacity = 12
+		
+	# assign(onto, prof_name, subject_name, group_name):
+	nir = assign(onto, 'Орлова', 'НИР', 'ПОАС1.1')
+	ad0 = assign(onto, 'Игнатьев',  'АнализДанных', 'ПОАС1.1')
+	adh = assign(onto, 'Гилка', 	'АнализДанных', 'ПОАС1.1')
+	eng1 = assign(onto, 'Пром', 'Английский', 'ПОАС1.1')
+	eng2 = assign(onto, 'Пром', 'Английский', 'ПОАС1.2')
+	bd = assign(onto, 'Аникин', 'СУБД', 'ПОАС1.1')	
+	abap = assign(onto, 'Мига', 'AБAБЫ', 'ПОАС1.1')	
+	prog = assign(onto, 'Литовкин', 'Программирование', 'ПрИн-266')	
+	
+	# setLesson(onto, sa, room_name, timeslot_name):
+	# ассистирование у Литовкина
+	setLesson(onto, prog, '902', name4timeslot(d=2, h=4))
+	setLesson(onto, prog, '902', name4timeslot(d=2, h=3))
+	
+	setLesson(onto, nir, '903', name4timeslot(d=2, h=5))
+	setLesson(onto, nir, '903', name4timeslot(d=2, h=6))
+	
+	setLesson(onto, adh, '1003', name4timeslot(d=3, h=2))
+	# setLesson(onto, ad0, '903', name4timeslot(d=3, h=3))
+	setLesson(onto, adh, '902', name4timeslot(d=3, h=3))
+	setLesson(onto, adh, '902', name4timeslot(d=3, h=4))
+	
+	setLesson(onto, eng1, '300а', name4timeslot(d=5, h=1))
+	setLesson(onto, eng1, '300а', name4timeslot(d=5, h=2))
+	setLesson(onto, eng2, '300а', name4timeslot(d=5, h=3))
+	setLesson(onto, eng2, '300а', name4timeslot(d=5, h=4))
+	
+	setLesson(onto, bd, '903', name4timeslot(d=6, h=2))
+	setLesson(onto, bd, '903', name4timeslot(d=6, h=3))
+	setLesson(onto, bd, '903', name4timeslot(d=6, h=4))
+
+	setLesson(onto, abap, '902', name4timeslot(d=7, h=3))
+	setLesson(onto, abap, '902', name4timeslot(d=7, h=4))
+
+	# ассистирование у Литовкина
+	setLesson(onto, prog, '902', name4timeslot(d=9, h=1))
+	setLesson(onto, prog, '902', name4timeslot(d=9, h=2))
+	
+	setLesson(onto, adh, '903', name4timeslot(d=9, h=3))
+	setLesson(onto, adh, '903', name4timeslot(d=9, h=4))
+	
+
 def main():
 
-	onto_iri = 'http://vstu.ru/poas/s09/timetable'
+	onto_iri = 'http://poas1.time/table'
 	ttbl = get_ontology(onto_iri)
 	
 	# Считать "часы" "парами", для упрощения расчётов.
-	# т.е. "12 часов в день" / 2  ==>  "6 пар в день"
+	# т.е. "6 пар в день"  ==>  "12 часов в день" --> запишем "hours" = 6
 	settings = {
-		"weekDays"  : 6,
-		"dayHours" : int(12/2),
-		"maxGroupHours" : int(8/2),
-		"maxProfHours" : int(6/2),
+		"weekDays"  : 12,
+		"dayHours" : 6,
+		"maxGroupHours" : 3,
+		"maxProfHours" : 1,
 	}
 	
 	make_timetable_schema(ttbl, settings)
-	
 	print("schema ready")
 	
-	# set_instances(ttbl, [
-	# 	{
-	# 	"class": ttbl.Group,
-	# 	"names": ["POAS1.1","POAS1.2"]
-	# 	}])
+	fill_ok_timetable(ttbl)
+	print("data ready")
 	
-	# print("instances ready")
+	
+	# close_world(ttbl)
+	# print("world closed!")
 	
 	ttbl.save(file='timetable_schema.rdf', format='rdfxml')
 	print("Saved RDF file!")
