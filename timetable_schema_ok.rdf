@@ -754,7 +754,6 @@
 <Group rdf:about="#ПрИн-266">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   <hasLearningAssignment rdf:resource="#Литовкин-Программирование-ПрИн-266"/>
-  <hasLearningAssignment rdf:resource="#Ситникова-Коммуникации_в_ПД-ПрИн-266"/>
   <size rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">18</size>
 </Group>
 
@@ -776,11 +775,6 @@
 <Room rdf:about="#300а">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   <capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</capacity>
-</Room>
-
-<Room rdf:about="#300б">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</capacity>
 </Room>
 
 <Professor rdf:about="#Орлова">
@@ -883,29 +877,6 @@
   <hasSubject rdf:resource="#Программирование"/>
 </SubjAssignment>
 
-<Professor rdf:about="#Ситникова">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <hasTeachingAssignment rdf:resource="#Ситникова-Коммуникации_в_ПД-ПрИн-266"/>
-</Professor>
-
-<Subject rdf:about="#Коммуникации_в_ПД">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-</Subject>
-
-<SubjAssignment rdf:about="#Ситникова-Коммуникации_в_ПД-ПрИн-266">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <hasSubject rdf:resource="#Коммуникации_в_ПД"/>
-</SubjAssignment>
-
-<Lesson rdf:about="#Литовкин-Программирование-ПрИн-266_in902_@d2_h3">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <isPartOfTimetable rdf:resource="#TABLE"/>
-  <takesPlace rdf:resource="#902"/>
-  <isAtTimeslot rdf:resource="#d2_h3"/>
-  <realizes rdf:resource="#Литовкин-Программирование-ПрИн-266"/>
-  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Литовкин-Программирование-ПрИн-266_in902_@d2_h3</hasName>
-</Lesson>
-
 <Lesson rdf:about="#Литовкин-Программирование-ПрИн-266_in902_@d2_h4">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   <isPartOfTimetable rdf:resource="#TABLE"/>
@@ -915,22 +886,13 @@
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Литовкин-Программирование-ПрИн-266_in902_@d2_h4</hasName>
 </Lesson>
 
-<Lesson rdf:about="#Литовкин-Программирование-ПрИн-266_in902_@d2_h5">
+<Lesson rdf:about="#Литовкин-Программирование-ПрИн-266_in902_@d2_h3">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <takesPlace rdf:resource="#902"/>
-  <isAtTimeslot rdf:resource="#d2_h5"/>
+  <isAtTimeslot rdf:resource="#d2_h3"/>
   <realizes rdf:resource="#Литовкин-Программирование-ПрИн-266"/>
-  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Литовкин-Программирование-ПрИн-266_in902_@d2_h5</hasName>
-</Lesson>
-
-<Lesson rdf:about="#Литовкин-Программирование-ПрИн-266_in902_@d2_h6">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <isPartOfTimetable rdf:resource="#TABLE"/>
-  <takesPlace rdf:resource="#902"/>
-  <isAtTimeslot rdf:resource="#d2_h6"/>
-  <realizes rdf:resource="#Литовкин-Программирование-ПрИн-266"/>
-  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Литовкин-Программирование-ПрИн-266_in902_@d2_h6</hasName>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Литовкин-Программирование-ПрИн-266_in902_@d2_h3</hasName>
 </Lesson>
 
 <Lesson rdf:about="#Орлова-НИР-ПОАС1.1_in903_@d2_h5">
@@ -958,15 +920,6 @@
   <isAtTimeslot rdf:resource="#d3_h2"/>
   <realizes rdf:resource="#Гилка-АнализДанных-ПОАС1.1"/>
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Гилка-АнализДанных-ПОАС1.1_in1003_@d3_h2</hasName>
-</Lesson>
-
-<Lesson rdf:about="#Игнатьев-АнализДанных-ПОАС1.1_in903_@d3_h3">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <isPartOfTimetable rdf:resource="#TABLE"/>
-  <takesPlace rdf:resource="#903"/>
-  <isAtTimeslot rdf:resource="#d3_h3"/>
-  <realizes rdf:resource="#Игнатьев-АнализДанных-ПОАС1.1"/>
-  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Игнатьев-АнализДанных-ПОАС1.1_in903_@d3_h3</hasName>
 </Lesson>
 
 <Lesson rdf:about="#Гилка-АнализДанных-ПОАС1.1_in902_@d3_h3">
@@ -1005,15 +958,6 @@
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Пром-Английский-ПОАС1.1_in300а_@d5_h2</hasName>
 </Lesson>
 
-<Lesson rdf:about="#Пром-Английский-ПОАС1.2_in300б_@d5_h2">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <isPartOfTimetable rdf:resource="#TABLE"/>
-  <takesPlace rdf:resource="#300б"/>
-  <isAtTimeslot rdf:resource="#d5_h2"/>
-  <realizes rdf:resource="#Пром-Английский-ПОАС1.2"/>
-  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Пром-Английский-ПОАС1.2_in300б_@d5_h2</hasName>
-</Lesson>
-
 <Lesson rdf:about="#Пром-Английский-ПОАС1.2_in300а_@d5_h3">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   <isPartOfTimetable rdf:resource="#TABLE"/>
@@ -1021,6 +965,15 @@
   <isAtTimeslot rdf:resource="#d5_h3"/>
   <realizes rdf:resource="#Пром-Английский-ПОАС1.2"/>
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Пром-Английский-ПОАС1.2_in300а_@d5_h3</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Пром-Английский-ПОАС1.2_in300а_@d5_h4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#300а"/>
+  <isAtTimeslot rdf:resource="#d5_h4"/>
+  <realizes rdf:resource="#Пром-Английский-ПОАС1.2"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Пром-Английский-ПОАС1.2_in300а_@d5_h4</hasName>
 </Lesson>
 
 <Lesson rdf:about="#Аникин-СУБД-ПОАС1.1_in903_@d6_h2">
@@ -1066,15 +1019,6 @@
   <isAtTimeslot rdf:resource="#d7_h4"/>
   <realizes rdf:resource="#Мига-AБAБЫ-ПОАС1.1"/>
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Мига-AБAБЫ-ПОАС1.1_in902_@d7_h4</hasName>
-</Lesson>
-
-<Lesson rdf:about="#Ситникова-Коммуникации_в_ПД-ПрИн-266_in902_@d7_h3">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <isPartOfTimetable rdf:resource="#TABLE"/>
-  <takesPlace rdf:resource="#902"/>
-  <isAtTimeslot rdf:resource="#d7_h3"/>
-  <realizes rdf:resource="#Ситникова-Коммуникации_в_ПД-ПрИн-266"/>
-  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ситникова-Коммуникации_в_ПД-ПрИн-266_in902_@d7_h3</hasName>
 </Lesson>
 
 <Lesson rdf:about="#Литовкин-Программирование-ПрИн-266_in902_@d9_h1">
