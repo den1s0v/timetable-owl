@@ -65,6 +65,7 @@ def make_timetable_schema(onto, settings):
 		# Derived Object properties
 		
 		class attends( (Group | Professor) >> Lesson , AsymmetricProperty, IrreflexiveProperty): pass
+		class buzyAt( (Group | Professor) >> Timeslot , AsymmetricProperty, IrreflexiveProperty): pass
 		
 		
 		# Data properties
@@ -118,7 +119,7 @@ def make_timetable_schema(onto, settings):
 		TimetableError("ERRORS")  # to attach log messages
 		
 	
-# 1. В одной аудитории (Room) проходит более одного урока одновременно
+# 1.1 В одной аудитории (Room) проходит более одного урока одновременно
 		Imp().set_as_rule("""
 Room(?r), Timeslot(?s), Lesson(?L1), Lesson(?L2),
 DifferentFrom(?L1, ?L2),
@@ -126,8 +127,35 @@ isAtTimeslot(?L1, ?s),
 isAtTimeslot(?L2, ?s),
 takesPlace(?L1, ?r),
 takesPlace(?L2, ?r),
-hasName(?L1, ?Lname),
-stringConcat(?msg, "Lessons clash at Room. One is: ", ?Lname)
+hasName(?L1, ?Lname1),
+hasName(?L2, ?Lname2),
+stringConcat(?msg, "Lessons clash at Room. The lessons are: `", ?Lname1, "` and `", ?Lname2, "`")
+ -> hasError(ERRORS, ?msg)
+ """)
+# 1.2 Для одной группы (Group) проходит более одного урока одновременно
+		Imp().set_as_rule("""
+Group(?g), Timeslot(?s), Lesson(?L1), Lesson(?L2),
+DifferentFrom(?L1, ?L2),
+isAtTimeslot(?L1, ?s),
+isAtTimeslot(?L2, ?s),
+attends(?g, ?L1),
+attends(?g, ?L2),
+hasName(?L1, ?Lname1),
+hasName(?L2, ?Lname2),
+stringConcat(?msg, "Simultaneous Lessons slice a Group in half. The lessons are: `", ?Lname1, "` and `", ?Lname2, "`")
+ -> hasError(ERRORS, ?msg)
+ """)
+# 1.3 Для одного преподавателя (Professor) проходит более одного урока одновременно
+		Imp().set_as_rule("""
+Professor(?p), Timeslot(?s), Lesson(?L1), Lesson(?L2),
+DifferentFrom(?L1, ?L2),
+isAtTimeslot(?L1, ?s),
+isAtTimeslot(?L2, ?s),
+attends(?p, ?L1),
+attends(?p, ?L2),
+hasName(?L1, ?Lname1),
+hasName(?L2, ?Lname2),
+stringConcat(?msg, "Simultaneous Lessons slice a Professor in half. The lessons are: `", ?Lname1, "` and `", ?Lname2, "`")
  -> hasError(ERRORS, ?msg)
  """)
 		# `differentFrom` -> `DifferentFrom` in owlready2 !!!
@@ -139,7 +167,7 @@ takesPlace(?L, ?r),
 capacity(?r, ?cap), size(?g, ?n), 
 lessThan(?cap, ?n),
 hasName(?L, ?Lname),
-stringConcat(?msg, "Room overflow with students at lesson: ", ?Lname)
+stringConcat(?msg, "Room (max ", ?cap,") overflow with ", ?n," students at lesson: ", ?Lname)
  -> hasError(ERRORS, ?msg)
 """)
 # 3.1 Вывод attends из назначения для Group
@@ -156,10 +184,19 @@ hasTeachingAssignment(?p, ?sa),
 realizes(?L, ?sa)
  -> attends(?p, ?L)
 """)
+# 3.3 Вывод buzyAt из assign
+		Imp().set_as_rule("""
+Lesson(?L), Timeslot(?ts),
+attends(?p, ?L), 
+isAtTimeslot(?L, ?ts)
+ -> buzyAt(?p, ?ts)
+""")
 # 4.1 Перегрузка в день для Group
-		Imp().set_as_rule(make_overload_rule('Group', t.maxGroupHours))
+		if t.maxGroupHours > 0:
+			Imp().set_as_rule(make_overload_rule('Group', t.maxGroupHours))
 # 4.2 Перегрузка в день для Professor
-		Imp().set_as_rule(make_overload_rule('Professor', t.maxProfHours))
+		if t.maxProfHours > 0:
+			Imp().set_as_rule(make_overload_rule('Professor', t.maxProfHours))
 		
 
 def make_overload_rule(subj='Group', max_lessons=4):
@@ -170,9 +207,9 @@ def make_overload_rule(subj='Group', max_lessons=4):
     from operator import add
     import itertools
 
-    linear_template = '''Lesson(?L{i}), Timeslot(?s{i}), day(?s{i}, ?d), 
-	isAtTimeslot(?L{i}, ?s{i}), attends(?g, ?L{i}), 
+    linear_template = '''Timeslot(?s{i}), buzyAt(?g, ?s{i}), day(?s{i}, ?d), 
 	'''
+	# Lesson(?L{i}), Timeslot(?s{i}), isAtTimeslot(?L{i}, ?s{i}), 
     LessonTimeslot_declare = reduce(add, [linear_template.format(i=i) for i in range(n_excceed)])
     
     # comb_template = '''DifferentFrom(?L{i}, ?L{j}), 
@@ -314,6 +351,84 @@ def fill_ok_timetable(onto):
 	setLesson(onto, adh, '903', name4timeslot(d=9, h=3))
 	setLesson(onto, adh, '903', name4timeslot(d=9, h=4))
 	
+	
+def fill_bad_timetable(onto):
+	
+	with onto:
+		# we may omit declaration property-less individuals; they will be created on first access.
+		# onto.Professor('Орлова')
+		# onto.Professor('Игнатьев')
+		# onto.Professor('Гилка')
+		# onto.Professor('Пром')
+		# onto.Professor('Аникин')
+		# onto.Professor('Мига')
+		# onto.Professor('Литовкин')
+		
+		# onto.Subject('НИР')
+		# onto.Subject('АнализДанных')
+		# onto.Subject('Английский')
+		# onto.Subject('СУБД')
+		# onto.Subject('БазыДанных')
+		# onto.Subject('AБAБЫ')
+		# onto.Subject('Программирование')
+		
+		# declare properties for concrete individuals to use further
+		onto.Group('ПОАС1.1', size = 12)
+		onto.Group('ПОАС1.2', size = 11)
+		onto.Group('ПрИн-266', size = 18)
+		
+		onto.Room('902').capacity = 50
+		onto.Room('903').capacity = 20
+		onto.Room('1003').capacity = 27
+		onto.Room('300а').capacity = 12
+		onto.Room('300б').capacity = 10
+		
+	# assign(onto, prof_name, subject_name, group_name):
+	nir = assign(onto, 'Орлова', 'НИР', 'ПОАС1.1')
+	ad0 = assign(onto, 'Игнатьев',  'АнализДанных', 'ПОАС1.1')
+	adh = assign(onto, 'Гилка', 	'АнализДанных', 'ПОАС1.1')
+	eng1 = assign(onto, 'Пром', 'Английский', 'ПОАС1.1')
+	eng2 = assign(onto, 'Пром', 'Английский', 'ПОАС1.2')
+	bd = assign(onto, 'Аникин', 'СУБД', 'ПОАС1.1')	
+	abap = assign(onto, 'Мига', 'AБAБЫ', 'ПОАС1.1')	
+	prog = assign(onto, 'Литовкин', 'Программирование', 'ПрИн-266')	
+	cnfl = assign(onto, 'Ситникова', 'Коммуникации_в_ПД', 'ПрИн-266')	
+	
+	# setLesson(onto, sa, room_name, timeslot_name):
+	# ассистирование у Литовкина
+	setLesson(onto, prog, '902', name4timeslot(d=2, h=3))
+	setLesson(onto, prog, '902', name4timeslot(d=2, h=4))
+	setLesson(onto, prog, '902', name4timeslot(d=2, h=5))
+	setLesson(onto, prog, '902', name4timeslot(d=2, h=6))
+	
+	setLesson(onto, nir, '903', name4timeslot(d=2, h=5))
+	setLesson(onto, nir, '903', name4timeslot(d=2, h=6))
+	
+	setLesson(onto, adh, '1003', name4timeslot(d=3, h=2))
+	setLesson(onto, ad0, '903', name4timeslot(d=3, h=3))
+	setLesson(onto, adh, '902', name4timeslot(d=3, h=3))
+	setLesson(onto, adh, '902', name4timeslot(d=3, h=4))
+	
+	setLesson(onto, eng1, '300а', name4timeslot(d=5, h=1))
+	setLesson(onto, eng1, '300а', name4timeslot(d=5, h=2))
+	setLesson(onto, eng2, '300б', name4timeslot(d=5, h=2))
+	setLesson(onto, eng2, '300а', name4timeslot(d=5, h=3))
+	
+	setLesson(onto, bd, '903', name4timeslot(d=6, h=2))
+	setLesson(onto, bd, '903', name4timeslot(d=6, h=3))
+	setLesson(onto, bd, '903', name4timeslot(d=6, h=4))
+
+	setLesson(onto, abap, '902', name4timeslot(d=7, h=3))
+	setLesson(onto, abap, '902', name4timeslot(d=7, h=4))
+	setLesson(onto, cnfl, '902', name4timeslot(d=7, h=3))
+
+	# ассистирование у Литовкина
+	setLesson(onto, prog, '902', name4timeslot(d=9, h=1))
+	setLesson(onto, prog, '902', name4timeslot(d=9, h=2))
+	
+	setLesson(onto, adh, '903', name4timeslot(d=9, h=3))
+	setLesson(onto, adh, '903', name4timeslot(d=9, h=4))
+	
 
 def main():
 
@@ -326,21 +441,26 @@ def main():
 		"weekDays"  : 12,
 		"dayHours" : 6,
 		"maxGroupHours" : 3,
-		"maxProfHours" : 1,
+		"maxProfHours" : 4,
 	}
 	
 	make_timetable_schema(ttbl, settings)
 	print("schema ready")
 	
-	fill_ok_timetable(ttbl)
-	print("data ready")
+	fill_func, rdf_filename = ([
+			(fill_ok_timetable, 'timetable_schema_ok.rdf'),
+			(fill_bad_timetable, 'timetable_schema.rdf'),
+		]) [0]
 	
+	
+	fill_func(ttbl)
+	print("data ready")
 	
 	# close_world(ttbl)
 	# print("world closed!")
 	
-	ttbl.save(file='timetable_schema.rdf', format='rdfxml')
-	print("Saved RDF file!")
+	ttbl.save(file=rdf_filename, format='rdfxml')
+	print("Saved RDF file: {} !".format(rdf_filename))
 	
 	return ######################################################## ! !
 				
@@ -349,4 +469,8 @@ def main():
 				
 				
 if __name__ == '__main__':
+	# print()
+	# print('Попробовать оптимизировать комбинаторное правило убиранием "деклараций" переменных')
+	# print()
+	
 	main()
