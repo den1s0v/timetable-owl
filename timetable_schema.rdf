@@ -3,52 +3,66 @@
          xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
          xmlns:owl="http://www.w3.org/2002/07/owl#"
-         xml:base="http://vstu.ru/poas/s09/timetable"
-         xmlns="http://vstu.ru/poas/s09/timetable#"
+         xml:base="http://poas1.time/table"
+         xmlns="http://poas1.time/table#"
          xmlns:swrl="http://www.w3.org/2003/11/swrl#">
 
-<owl:Ontology rdf:about="http://vstu.ru/poas/s09/timetable"/>
+<owl:Ontology rdf:about="http://poas1.time/table"/>
 
 <owl:ObjectProperty rdf:about="#isPartOfTimetable">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
   <rdfs:domain rdf:resource="#TimetableElement"/>
   <rdfs:range rdf:resource="#Timetable"/>
-  <rdfs:subPropertyOf rdf:resource="#hasPart"/>
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#takesPlace">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
   <rdfs:domain rdf:resource="#Lesson"/>
   <rdfs:range rdf:resource="#Room"/>
-  <rdfs:subPropertyOf rdf:resource="#referencesTo"/>
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#isAtTimeslot">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
   <rdfs:domain rdf:resource="#Lesson"/>
   <rdfs:range rdf:resource="#Timeslot"/>
-  <rdfs:subPropertyOf rdf:resource="#referencesTo"/>
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#realizes">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
   <rdfs:domain rdf:resource="#Lesson"/>
   <rdfs:range rdf:resource="#SubjAssignment"/>
-  <rdfs:subPropertyOf rdf:resource="#referencesTo"/>
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#hasLearningAssignment">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
   <rdfs:domain rdf:resource="#Group"/>
   <rdfs:range rdf:resource="#SubjAssignment"/>
-  <rdfs:subPropertyOf rdf:resource="#referencedBy"/>
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#hasTeachingAssignment">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
   <rdfs:domain rdf:resource="#Professor"/>
   <rdfs:range rdf:resource="#SubjAssignment"/>
-  <rdfs:subPropertyOf rdf:resource="#referencedBy"/>
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#hasSubject">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
   <rdfs:domain rdf:resource="#SubjAssignment"/>
   <rdfs:range rdf:resource="#Subject"/>
-  <rdfs:subPropertyOf rdf:resource="#referencesTo"/>
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#attends">
@@ -56,66 +70,58 @@
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
 </owl:ObjectProperty>
 
-<owl:DatatypeProperty rdf:about="#hasUniqueData">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-</owl:DatatypeProperty>
-
 <owl:DatatypeProperty rdf:about="#weekDays">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
   <rdfs:domain rdf:resource="#Timetable"/>
   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  <rdfs:subPropertyOf rdf:resource="#hasUniqueData"/>
 </owl:DatatypeProperty>
 
 <owl:DatatypeProperty rdf:about="#dayHours">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
   <rdfs:domain rdf:resource="#Timetable"/>
   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  <rdfs:subPropertyOf rdf:resource="#hasUniqueData"/>
 </owl:DatatypeProperty>
 
 <owl:DatatypeProperty rdf:about="#maxGroupHours">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
   <rdfs:domain rdf:resource="#Timetable"/>
   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  <rdfs:subPropertyOf rdf:resource="#hasUniqueData"/>
 </owl:DatatypeProperty>
 
 <owl:DatatypeProperty rdf:about="#maxProfHours">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
   <rdfs:domain rdf:resource="#Timetable"/>
   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  <rdfs:subPropertyOf rdf:resource="#hasUniqueData"/>
 </owl:DatatypeProperty>
 
 <owl:DatatypeProperty rdf:about="#capacity">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
   <rdfs:domain rdf:resource="#Room"/>
   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  <rdfs:subPropertyOf rdf:resource="#hasUniqueData"/>
 </owl:DatatypeProperty>
 
 <owl:DatatypeProperty rdf:about="#day">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
   <rdfs:domain rdf:resource="#Timeslot"/>
   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  <rdfs:subPropertyOf rdf:resource="#hasUniqueData"/>
 </owl:DatatypeProperty>
 
 <owl:DatatypeProperty rdf:about="#hour">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
   <rdfs:domain rdf:resource="#Timeslot"/>
   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  <rdfs:subPropertyOf rdf:resource="#hasUniqueData"/>
 </owl:DatatypeProperty>
 
 <owl:DatatypeProperty rdf:about="#size">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
   <rdfs:domain rdf:resource="#Group"/>
   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  <rdfs:subPropertyOf rdf:resource="#hasUniqueData"/>
 </owl:DatatypeProperty>
 
-<owl:DatatypeProperty rdf:about="#name">
-  <rdfs:subPropertyOf rdf:resource="#hasUniqueData"/>
-</owl:DatatypeProperty>
-
-<owl:DatatypeProperty rdf:about="#hours">
-  <rdfs:domain rdf:resource="#SubjAssignment"/>
-  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  <rdfs:subPropertyOf rdf:resource="#hasUniqueData"/>
+<owl:DatatypeProperty rdf:about="#hasName">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Lesson"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
 </owl:DatatypeProperty>
 
 <owl:DatatypeProperty rdf:about="#hasError">
@@ -141,101 +147,8 @@
 
 <owl:Class rdf:about="#Timeslot">
   <rdfs:subClassOf rdf:resource="#TimetableElement"/>
-  <rdfs:subClassOf>
-    <owl:Class>
-      <owl:oneOf rdf:parseType="Collection">
-        <rdf:Description rdf:about="#slot4_1"/>
-        <rdf:Description rdf:about="#slot4_2"/>
-        <rdf:Description rdf:about="#slot4_4"/>
-        <rdf:Description rdf:about="#slot4_3"/>
-        <rdf:Description rdf:about="#slot4_5"/>
-        <rdf:Description rdf:about="#slot4_6"/>
-        <rdf:Description rdf:about="#slot5_1"/>
-        <rdf:Description rdf:about="#slot5_2"/>
-        <rdf:Description rdf:about="#slot5_3"/>
-        <rdf:Description rdf:about="#slot5_4"/>
-        <rdf:Description rdf:about="#slot5_5"/>
-        <rdf:Description rdf:about="#slot5_6"/>
-        <rdf:Description rdf:about="#slot1_1"/>
-        <rdf:Description rdf:about="#slot6_1"/>
-        <rdf:Description rdf:about="#slot1_3"/>
-        <rdf:Description rdf:about="#slot6_2"/>
-        <rdf:Description rdf:about="#slot6_3"/>
-        <rdf:Description rdf:about="#slot6_4"/>
-        <rdf:Description rdf:about="#slot1_2"/>
-        <rdf:Description rdf:about="#slot6_5"/>
-        <rdf:Description rdf:about="#slot1_4"/>
-        <rdf:Description rdf:about="#slot6_6"/>
-        <rdf:Description rdf:about="#slot1_5"/>
-        <rdf:Description rdf:about="#slot1_6"/>
-        <rdf:Description rdf:about="#slot2_1"/>
-        <rdf:Description rdf:about="#slot2_2"/>
-        <rdf:Description rdf:about="#slot2_3"/>
-        <rdf:Description rdf:about="#slot2_4"/>
-        <rdf:Description rdf:about="#slot2_5"/>
-        <rdf:Description rdf:about="#slot2_6"/>
-        <rdf:Description rdf:about="#slot3_1"/>
-        <rdf:Description rdf:about="#slot3_2"/>
-        <rdf:Description rdf:about="#slot3_3"/>
-        <rdf:Description rdf:about="#slot3_4"/>
-        <rdf:Description rdf:about="#slot3_5"/>
-        <rdf:Description rdf:about="#slot3_6"/>
-      </owl:oneOf>
-    </owl:Class>
-  </rdfs:subClassOf>
-  <rdfs:subClassOf>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#isPartOfTimetable"/>
-      <owl:allValuesFrom>
-        <owl:Class>
-          <owl:oneOf rdf:parseType="Collection">
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-            <rdf:Description rdf:about="#TABLE"/>
-          </owl:oneOf>
-        </owl:Class>
-      </owl:allValuesFrom>
-    </owl:Restriction>
-  </rdfs:subClassOf>
-  <rdfs:subClassOf>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Дни (d) нумеруются: с 1 (ПН) по 5 (ПТ), затем 6 (ПН) и до 10 (ПТ)</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Часы (h) нумеруются номерами пар: 1 (с 8:30 по 10:00) по 6 (с 17:00 по 18:30)</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#Group">
@@ -254,501 +167,519 @@
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
-<owl:Class rdf:about="#referencesTo">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-</owl:Class>
-
-<owl:Class rdf:about="#referencedBy">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-</owl:Class>
-
-<owl:Class rdf:about="#hasPart">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-</owl:Class>
-
 <owl:Class rdf:about="#TimetableError">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
 <Timetable rdf:about="#TABLE">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <weekDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</weekDays>
+  <weekDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</weekDays>
   <dayHours rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</dayHours>
-  <maxGroupHours rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</maxGroupHours>
-  <maxProfHours rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</maxProfHours>
+  <maxGroupHours rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</maxGroupHours>
+  <maxProfHours rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</maxProfHours>
 </Timetable>
 
-<Timeslot rdf:about="#slot1_1">
+<Timeslot rdf:about="#d1_h1">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot1_2">
+<Timeslot rdf:about="#d1_h2">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot1_3">
+<Timeslot rdf:about="#d1_h3">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot1_4">
+<Timeslot rdf:about="#d1_h4">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot1_5">
+<Timeslot rdf:about="#d1_h5">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot1_6">
+<Timeslot rdf:about="#d1_h6">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot2_1">
+<Timeslot rdf:about="#d2_h1">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot2_2">
+<Timeslot rdf:about="#d2_h2">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot2_3">
+<Timeslot rdf:about="#d2_h3">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot2_4">
+<Timeslot rdf:about="#d2_h4">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot2_5">
+<Timeslot rdf:about="#d2_h5">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot2_6">
+<Timeslot rdf:about="#d2_h6">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot3_1">
+<Timeslot rdf:about="#d3_h1">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot3_2">
+<Timeslot rdf:about="#d3_h2">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot3_3">
+<Timeslot rdf:about="#d3_h3">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot3_4">
+<Timeslot rdf:about="#d3_h4">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot3_5">
+<Timeslot rdf:about="#d3_h5">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot3_6">
+<Timeslot rdf:about="#d3_h6">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot4_1">
+<Timeslot rdf:about="#d4_h1">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot4_2">
+<Timeslot rdf:about="#d4_h2">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot4_3">
+<Timeslot rdf:about="#d4_h3">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot4_4">
+<Timeslot rdf:about="#d4_h4">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot4_5">
+<Timeslot rdf:about="#d4_h5">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot4_6">
+<Timeslot rdf:about="#d4_h6">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot5_1">
+<Timeslot rdf:about="#d5_h1">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot5_2">
+<Timeslot rdf:about="#d5_h2">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot5_3">
+<Timeslot rdf:about="#d5_h3">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot5_4">
+<Timeslot rdf:about="#d5_h4">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot5_5">
+<Timeslot rdf:about="#d5_h5">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot5_6">
+<Timeslot rdf:about="#d5_h6">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot6_1">
+<Timeslot rdf:about="#d6_h1">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot6_2">
+<Timeslot rdf:about="#d6_h2">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot6_3">
+<Timeslot rdf:about="#d6_h3">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot6_4">
+<Timeslot rdf:about="#d6_h4">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot6_5">
+<Timeslot rdf:about="#d6_h5">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
 </Timeslot>
 
-<Timeslot rdf:about="#slot6_6">
+<Timeslot rdf:about="#d6_h6">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <rdf:type>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#attends"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdf:type>
   <isPartOfTimetable rdf:resource="#TABLE"/>
   <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d7_h1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d7_h2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d7_h3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d7_h4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d7_h5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d7_h6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d8_h1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d8_h2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d8_h3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d8_h4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d8_h5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d8_h6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d9_h1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d9_h2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d9_h3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d9_h4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d9_h5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d9_h6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d10_h1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d10_h2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d10_h3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d10_h4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d10_h5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d10_h6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d11_h1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d11_h2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d11_h3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d11_h4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d11_h5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d11_h6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d12_h1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d12_h2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d12_h3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d12_h4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d12_h5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</day>
+  <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</hour>
+</Timeslot>
+
+<Timeslot rdf:about="#d12_h6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <day rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</day>
   <hour rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</hour>
 </Timeslot>
 
@@ -764,9 +695,11 @@
 
 <swrl:Variable rdf:about="urn:swrl#L2"/>
 
-<swrl:Variable rdf:about="urn:swrl#L"/>
+<swrl:Variable rdf:about="urn:swrl#Lname"/>
 
-<swrl:Variable rdf:about="urn:swrl#sa"/>
+<swrl:Variable rdf:about="urn:swrl#msg"/>
+
+<swrl:Variable rdf:about="urn:swrl#L"/>
 
 <swrl:Variable rdf:about="urn:swrl#g"/>
 
@@ -774,13 +707,15 @@
 
 <swrl:Variable rdf:about="urn:swrl#n"/>
 
+<swrl:Variable rdf:about="urn:swrl#sa"/>
+
 <swrl:Variable rdf:about="urn:swrl#p"/>
 
 <swrl:Variable rdf:about="urn:swrl#L0"/>
 
 <swrl:Variable rdf:about="urn:swrl#s0"/>
 
-<swrl:Variable rdf:about="urn:swrl#day"/>
+<swrl:Variable rdf:about="urn:swrl#d"/>
 
 <swrl:Variable rdf:about="urn:swrl#s1"/>
 
@@ -790,11 +725,328 @@
 
 <swrl:Variable rdf:about="urn:swrl#s3"/>
 
-<swrl:Variable rdf:about="urn:swrl#L4"/>
+<Group rdf:about="#ПОАС1.1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasLearningAssignment rdf:resource="#Орлова-НИР-ПОАС1.1"/>
+  <hasLearningAssignment rdf:resource="#Игнатьев-АнализДанных-ПОАС1.1"/>
+  <hasLearningAssignment rdf:resource="#Гилка-АнализДанных-ПОАС1.1"/>
+  <hasLearningAssignment rdf:resource="#Пром-Английский-ПОАС1.1"/>
+  <hasLearningAssignment rdf:resource="#Аникин-СУБД-ПОАС1.1"/>
+  <hasLearningAssignment rdf:resource="#Мига-AБAБЫ-ПОАС1.1"/>
+  <size rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</size>
+</Group>
 
-<swrl:Variable rdf:about="urn:swrl#s4"/>
+<Group rdf:about="#ПОАС1.2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasLearningAssignment rdf:resource="#Пром-Английский-ПОАС1.2"/>
+  <size rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</size>
+</Group>
 
-<swrl:Variable rdf:about="urn:swrl#msg"/>
+<Group rdf:about="#ПрИн-266">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasLearningAssignment rdf:resource="#Литовкин-Программирование-ПрИн-266"/>
+  <size rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">18</size>
+</Group>
+
+<Room rdf:about="#902">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">50</capacity>
+</Room>
+
+<Room rdf:about="#903">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">20</capacity>
+</Room>
+
+<Room rdf:about="#1003">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">27</capacity>
+</Room>
+
+<Room rdf:about="#300а">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</capacity>
+</Room>
+
+<Professor rdf:about="#Орлова">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasTeachingAssignment rdf:resource="#Орлова-НИР-ПОАС1.1"/>
+</Professor>
+
+<Subject rdf:about="#НИР">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Subject>
+
+<SubjAssignment rdf:about="#Орлова-НИР-ПОАС1.1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSubject rdf:resource="#НИР"/>
+</SubjAssignment>
+
+<Professor rdf:about="#Игнатьев">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasTeachingAssignment rdf:resource="#Игнатьев-АнализДанных-ПОАС1.1"/>
+</Professor>
+
+<Subject rdf:about="#АнализДанных">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Subject>
+
+<SubjAssignment rdf:about="#Игнатьев-АнализДанных-ПОАС1.1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSubject rdf:resource="#АнализДанных"/>
+</SubjAssignment>
+
+<Professor rdf:about="#Гилка">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasTeachingAssignment rdf:resource="#Гилка-АнализДанных-ПОАС1.1"/>
+</Professor>
+
+<SubjAssignment rdf:about="#Гилка-АнализДанных-ПОАС1.1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSubject rdf:resource="#АнализДанных"/>
+</SubjAssignment>
+
+<Professor rdf:about="#Пром">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasTeachingAssignment rdf:resource="#Пром-Английский-ПОАС1.1"/>
+  <hasTeachingAssignment rdf:resource="#Пром-Английский-ПОАС1.2"/>
+</Professor>
+
+<Subject rdf:about="#Английский">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Subject>
+
+<SubjAssignment rdf:about="#Пром-Английский-ПОАС1.1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSubject rdf:resource="#Английский"/>
+</SubjAssignment>
+
+<SubjAssignment rdf:about="#Пром-Английский-ПОАС1.2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSubject rdf:resource="#Английский"/>
+</SubjAssignment>
+
+<Professor rdf:about="#Аникин">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasTeachingAssignment rdf:resource="#Аникин-СУБД-ПОАС1.1"/>
+</Professor>
+
+<Subject rdf:about="#СУБД">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Subject>
+
+<SubjAssignment rdf:about="#Аникин-СУБД-ПОАС1.1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSubject rdf:resource="#СУБД"/>
+</SubjAssignment>
+
+<Professor rdf:about="#Мига">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasTeachingAssignment rdf:resource="#Мига-AБAБЫ-ПОАС1.1"/>
+</Professor>
+
+<Subject rdf:about="#AБAБЫ">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Subject>
+
+<SubjAssignment rdf:about="#Мига-AБAБЫ-ПОАС1.1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSubject rdf:resource="#AБAБЫ"/>
+</SubjAssignment>
+
+<Professor rdf:about="#Литовкин">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasTeachingAssignment rdf:resource="#Литовкин-Программирование-ПрИн-266"/>
+</Professor>
+
+<Subject rdf:about="#Программирование">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Subject>
+
+<SubjAssignment rdf:about="#Литовкин-Программирование-ПрИн-266">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hasSubject rdf:resource="#Программирование"/>
+</SubjAssignment>
+
+<Lesson rdf:about="#Литовкин-Программирование-ПрИн-266_in902_@d2_h4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#902"/>
+  <isAtTimeslot rdf:resource="#d2_h4"/>
+  <realizes rdf:resource="#Литовкин-Программирование-ПрИн-266"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Литовкин-Программирование-ПрИн-266_in902_@d2_h4</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Литовкин-Программирование-ПрИн-266_in902_@d2_h3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#902"/>
+  <isAtTimeslot rdf:resource="#d2_h3"/>
+  <realizes rdf:resource="#Литовкин-Программирование-ПрИн-266"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Литовкин-Программирование-ПрИн-266_in902_@d2_h3</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Орлова-НИР-ПОАС1.1_in903_@d2_h5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#903"/>
+  <isAtTimeslot rdf:resource="#d2_h5"/>
+  <realizes rdf:resource="#Орлова-НИР-ПОАС1.1"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Орлова-НИР-ПОАС1.1_in903_@d2_h5</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Орлова-НИР-ПОАС1.1_in903_@d2_h6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#903"/>
+  <isAtTimeslot rdf:resource="#d2_h6"/>
+  <realizes rdf:resource="#Орлова-НИР-ПОАС1.1"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Орлова-НИР-ПОАС1.1_in903_@d2_h6</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Гилка-АнализДанных-ПОАС1.1_in1003_@d3_h2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#1003"/>
+  <isAtTimeslot rdf:resource="#d3_h2"/>
+  <realizes rdf:resource="#Гилка-АнализДанных-ПОАС1.1"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Гилка-АнализДанных-ПОАС1.1_in1003_@d3_h2</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Гилка-АнализДанных-ПОАС1.1_in902_@d3_h3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#902"/>
+  <isAtTimeslot rdf:resource="#d3_h3"/>
+  <realizes rdf:resource="#Гилка-АнализДанных-ПОАС1.1"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Гилка-АнализДанных-ПОАС1.1_in902_@d3_h3</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Гилка-АнализДанных-ПОАС1.1_in902_@d3_h4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#902"/>
+  <isAtTimeslot rdf:resource="#d3_h4"/>
+  <realizes rdf:resource="#Гилка-АнализДанных-ПОАС1.1"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Гилка-АнализДанных-ПОАС1.1_in902_@d3_h4</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Пром-Английский-ПОАС1.1_in300а_@d5_h1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#300а"/>
+  <isAtTimeslot rdf:resource="#d5_h1"/>
+  <realizes rdf:resource="#Пром-Английский-ПОАС1.1"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Пром-Английский-ПОАС1.1_in300а_@d5_h1</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Пром-Английский-ПОАС1.1_in300а_@d5_h2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#300а"/>
+  <isAtTimeslot rdf:resource="#d5_h2"/>
+  <realizes rdf:resource="#Пром-Английский-ПОАС1.1"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Пром-Английский-ПОАС1.1_in300а_@d5_h2</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Пром-Английский-ПОАС1.2_in300а_@d5_h3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#300а"/>
+  <isAtTimeslot rdf:resource="#d5_h3"/>
+  <realizes rdf:resource="#Пром-Английский-ПОАС1.2"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Пром-Английский-ПОАС1.2_in300а_@d5_h3</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Пром-Английский-ПОАС1.2_in300а_@d5_h4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#300а"/>
+  <isAtTimeslot rdf:resource="#d5_h4"/>
+  <realizes rdf:resource="#Пром-Английский-ПОАС1.2"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Пром-Английский-ПОАС1.2_in300а_@d5_h4</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Аникин-СУБД-ПОАС1.1_in903_@d6_h2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#903"/>
+  <isAtTimeslot rdf:resource="#d6_h2"/>
+  <realizes rdf:resource="#Аникин-СУБД-ПОАС1.1"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Аникин-СУБД-ПОАС1.1_in903_@d6_h2</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Аникин-СУБД-ПОАС1.1_in903_@d6_h3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#903"/>
+  <isAtTimeslot rdf:resource="#d6_h3"/>
+  <realizes rdf:resource="#Аникин-СУБД-ПОАС1.1"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Аникин-СУБД-ПОАС1.1_in903_@d6_h3</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Аникин-СУБД-ПОАС1.1_in903_@d6_h4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#903"/>
+  <isAtTimeslot rdf:resource="#d6_h4"/>
+  <realizes rdf:resource="#Аникин-СУБД-ПОАС1.1"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Аникин-СУБД-ПОАС1.1_in903_@d6_h4</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Мига-AБAБЫ-ПОАС1.1_in902_@d7_h3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#902"/>
+  <isAtTimeslot rdf:resource="#d7_h3"/>
+  <realizes rdf:resource="#Мига-AБAБЫ-ПОАС1.1"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Мига-AБAБЫ-ПОАС1.1_in902_@d7_h3</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Мига-AБAБЫ-ПОАС1.1_in902_@d7_h4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#902"/>
+  <isAtTimeslot rdf:resource="#d7_h4"/>
+  <realizes rdf:resource="#Мига-AБAБЫ-ПОАС1.1"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Мига-AБAБЫ-ПОАС1.1_in902_@d7_h4</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Литовкин-Программирование-ПрИн-266_in902_@d9_h1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#902"/>
+  <isAtTimeslot rdf:resource="#d9_h1"/>
+  <realizes rdf:resource="#Литовкин-Программирование-ПрИн-266"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Литовкин-Программирование-ПрИн-266_in902_@d9_h1</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Литовкин-Программирование-ПрИн-266_in902_@d9_h2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#902"/>
+  <isAtTimeslot rdf:resource="#d9_h2"/>
+  <realizes rdf:resource="#Литовкин-Программирование-ПрИн-266"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Литовкин-Программирование-ПрИн-266_in902_@d9_h2</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Гилка-АнализДанных-ПОАС1.1_in903_@d9_h3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#903"/>
+  <isAtTimeslot rdf:resource="#d9_h3"/>
+  <realizes rdf:resource="#Гилка-АнализДанных-ПОАС1.1"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Гилка-АнализДанных-ПОАС1.1_in903_@d9_h3</hasName>
+</Lesson>
+
+<Lesson rdf:about="#Гилка-АнализДанных-ПОАС1.1_in903_@d9_h4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <isPartOfTimetable rdf:resource="#TABLE"/>
+  <takesPlace rdf:resource="#903"/>
+  <isAtTimeslot rdf:resource="#d9_h4"/>
+  <realizes rdf:resource="#Гилка-АнализДанных-ПОАС1.1"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Гилка-АнализДанных-ПОАС1.1_in903_@d9_h4</hasName>
+</Lesson>
 
 <swrl:Imp>
   <swrl:body>
@@ -827,7 +1079,7 @@
                     <swrl:DatavaluedPropertyAtom>
                       <swrl:propertyPredicate rdf:resource="#day"/>
                       <swrl:argument1 rdf:resource="urn:swrl#s0"/>
-                      <swrl:argument2 rdf:resource="urn:swrl#day"/>
+                      <swrl:argument2 rdf:resource="urn:swrl#d"/>
                     </swrl:DatavaluedPropertyAtom>
                   </rdf:first>
                   <rdf:rest>
@@ -845,7 +1097,7 @@
                             <swrl:IndividualPropertyAtom>
                               <swrl:propertyPredicate rdf:resource="#attends"/>
                               <swrl:argument1 rdf:resource="urn:swrl#g"/>
-                              <swrl:argument2 rdf:resource="urn:swrl#s0"/>
+                              <swrl:argument2 rdf:resource="urn:swrl#L0"/>
                             </swrl:IndividualPropertyAtom>
                           </rdf:first>
                           <rdf:rest>
@@ -870,7 +1122,7 @@
                                         <swrl:DatavaluedPropertyAtom>
                                           <swrl:propertyPredicate rdf:resource="#day"/>
                                           <swrl:argument1 rdf:resource="urn:swrl#s1"/>
-                                          <swrl:argument2 rdf:resource="urn:swrl#day"/>
+                                          <swrl:argument2 rdf:resource="urn:swrl#d"/>
                                         </swrl:DatavaluedPropertyAtom>
                                       </rdf:first>
                                       <rdf:rest>
@@ -888,197 +1140,41 @@
                                                 <swrl:IndividualPropertyAtom>
                                                   <swrl:propertyPredicate rdf:resource="#attends"/>
                                                   <swrl:argument1 rdf:resource="urn:swrl#g"/>
-                                                  <swrl:argument2 rdf:resource="urn:swrl#s1"/>
+                                                  <swrl:argument2 rdf:resource="urn:swrl#L1"/>
                                                 </swrl:IndividualPropertyAtom>
                                               </rdf:first>
                                               <rdf:rest>
                                                 <rdf:Description>
                                                   <rdf:first>
-                                                    <swrl:ClassAtom>
-                                                      <swrl:classPredicate rdf:resource="#Lesson"/>
-                                                      <swrl:argument1 rdf:resource="urn:swrl#L2"/>
-                                                    </swrl:ClassAtom>
+                                                    <swrl:DifferentIndividualsAtom>
+                                                      <swrl:argument1 rdf:resource="urn:swrl#s0"/>
+                                                      <swrl:argument2 rdf:resource="urn:swrl#s1"/>
+                                                    </swrl:DifferentIndividualsAtom>
                                                   </rdf:first>
                                                   <rdf:rest>
                                                     <rdf:Description>
                                                       <rdf:first>
-                                                        <swrl:ClassAtom>
-                                                          <swrl:classPredicate rdf:resource="#Timeslot"/>
-                                                          <swrl:argument1 rdf:resource="urn:swrl#s2"/>
-                                                        </swrl:ClassAtom>
-                                                      </rdf:first>
-                                                      <rdf:rest>
-                                                        <rdf:Description>
-                                                          <rdf:first>
-                                                            <swrl:DatavaluedPropertyAtom>
-                                                              <swrl:propertyPredicate rdf:resource="#day"/>
-                                                              <swrl:argument1 rdf:resource="urn:swrl#s2"/>
-                                                              <swrl:argument2 rdf:resource="urn:swrl#day"/>
-                                                            </swrl:DatavaluedPropertyAtom>
-                                                          </rdf:first>
-                                                          <rdf:rest>
+                                                        <swrl:BuiltinAtom>
+                                                          <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#stringConcat"/>
+                                                          <swrl:arguments>
                                                             <rdf:Description>
-                                                              <rdf:first>
-                                                                <swrl:IndividualPropertyAtom>
-                                                                  <swrl:propertyPredicate rdf:resource="#isAtTimeslot"/>
-                                                                  <swrl:argument1 rdf:resource="urn:swrl#L2"/>
-                                                                  <swrl:argument2 rdf:resource="urn:swrl#s2"/>
-                                                                </swrl:IndividualPropertyAtom>
-                                                              </rdf:first>
+                                                              <rdf:first rdf:resource="urn:swrl#msg"/>
                                                               <rdf:rest>
                                                                 <rdf:Description>
-                                                                  <rdf:first>
-                                                                    <swrl:IndividualPropertyAtom>
-                                                                      <swrl:propertyPredicate rdf:resource="#attends"/>
-                                                                      <swrl:argument1 rdf:resource="urn:swrl#g"/>
-                                                                      <swrl:argument2 rdf:resource="urn:swrl#s2"/>
-                                                                    </swrl:IndividualPropertyAtom>
-                                                                  </rdf:first>
                                                                   <rdf:rest>
                                                                     <rdf:Description>
-                                                                      <rdf:first>
-                                                                        <swrl:ClassAtom>
-                                                                          <swrl:classPredicate rdf:resource="#Lesson"/>
-                                                                          <swrl:argument1 rdf:resource="urn:swrl#L3"/>
-                                                                        </swrl:ClassAtom>
-                                                                      </rdf:first>
-                                                                      <rdf:rest>
-                                                                        <rdf:Description>
-                                                                          <rdf:first>
-                                                                            <swrl:ClassAtom>
-                                                                              <swrl:classPredicate rdf:resource="#Timeslot"/>
-                                                                              <swrl:argument1 rdf:resource="urn:swrl#s3"/>
-                                                                            </swrl:ClassAtom>
-                                                                          </rdf:first>
-                                                                          <rdf:rest>
-                                                                            <rdf:Description>
-                                                                              <rdf:first>
-                                                                                <swrl:DatavaluedPropertyAtom>
-                                                                                  <swrl:propertyPredicate rdf:resource="#day"/>
-                                                                                  <swrl:argument1 rdf:resource="urn:swrl#s3"/>
-                                                                                  <swrl:argument2 rdf:resource="urn:swrl#day"/>
-                                                                                </swrl:DatavaluedPropertyAtom>
-                                                                              </rdf:first>
-                                                                              <rdf:rest>
-                                                                                <rdf:Description>
-                                                                                  <rdf:first>
-                                                                                    <swrl:IndividualPropertyAtom>
-                                                                                      <swrl:propertyPredicate rdf:resource="#isAtTimeslot"/>
-                                                                                      <swrl:argument1 rdf:resource="urn:swrl#L3"/>
-                                                                                      <swrl:argument2 rdf:resource="urn:swrl#s3"/>
-                                                                                    </swrl:IndividualPropertyAtom>
-                                                                                  </rdf:first>
-                                                                                  <rdf:rest>
-                                                                                    <rdf:Description>
-                                                                                      <rdf:first>
-                                                                                        <swrl:IndividualPropertyAtom>
-                                                                                          <swrl:propertyPredicate rdf:resource="#attends"/>
-                                                                                          <swrl:argument1 rdf:resource="urn:swrl#g"/>
-                                                                                          <swrl:argument2 rdf:resource="urn:swrl#s3"/>
-                                                                                        </swrl:IndividualPropertyAtom>
-                                                                                      </rdf:first>
-                                                                                      <rdf:rest>
-                                                                                        <rdf:Description>
-                                                                                          <rdf:first>
-                                                                                            <swrl:DifferentIndividualsAtom>
-                                                                                              <swrl:argument1 rdf:resource="urn:swrl#L0"/>
-                                                                                              <swrl:argument2 rdf:resource="urn:swrl#L1"/>
-                                                                                            </swrl:DifferentIndividualsAtom>
-                                                                                          </rdf:first>
-                                                                                          <rdf:rest>
-                                                                                            <rdf:Description>
-                                                                                              <rdf:first>
-                                                                                                <swrl:DifferentIndividualsAtom>
-                                                                                                  <swrl:argument1 rdf:resource="urn:swrl#L0"/>
-                                                                                                  <swrl:argument2 rdf:resource="urn:swrl#L2"/>
-                                                                                                </swrl:DifferentIndividualsAtom>
-                                                                                              </rdf:first>
-                                                                                              <rdf:rest>
-                                                                                                <rdf:Description>
-                                                                                                  <rdf:first>
-                                                                                                    <swrl:DifferentIndividualsAtom>
-                                                                                                      <swrl:argument1 rdf:resource="urn:swrl#L0"/>
-                                                                                                      <swrl:argument2 rdf:resource="urn:swrl#L3"/>
-                                                                                                    </swrl:DifferentIndividualsAtom>
-                                                                                                  </rdf:first>
-                                                                                                  <rdf:rest>
-                                                                                                    <rdf:Description>
-                                                                                                      <rdf:first>
-                                                                                                        <swrl:DifferentIndividualsAtom>
-                                                                                                          <swrl:argument1 rdf:resource="urn:swrl#L1"/>
-                                                                                                          <swrl:argument2 rdf:resource="urn:swrl#L2"/>
-                                                                                                        </swrl:DifferentIndividualsAtom>
-                                                                                                      </rdf:first>
-                                                                                                      <rdf:rest>
-                                                                                                        <rdf:Description>
-                                                                                                          <rdf:first>
-                                                                                                            <swrl:DifferentIndividualsAtom>
-                                                                                                              <swrl:argument1 rdf:resource="urn:swrl#L1"/>
-                                                                                                              <swrl:argument2 rdf:resource="urn:swrl#L3"/>
-                                                                                                            </swrl:DifferentIndividualsAtom>
-                                                                                                          </rdf:first>
-                                                                                                          <rdf:rest>
-                                                                                                            <rdf:Description>
-                                                                                                              <rdf:first>
-                                                                                                                <swrl:DifferentIndividualsAtom>
-                                                                                                                  <swrl:argument1 rdf:resource="urn:swrl#L2"/>
-                                                                                                                  <swrl:argument2 rdf:resource="urn:swrl#L3"/>
-                                                                                                                </swrl:DifferentIndividualsAtom>
-                                                                                                              </rdf:first>
-                                                                                                              <rdf:rest>
-                                                                                                                <rdf:Description>
-                                                                                                                  <rdf:first>
-                                                                                                                    <swrl:BuiltinAtom>
-                                                                                                                      <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#stringConcat"/>
-                                                                                                                      <swrl:arguments>
-                                                                                                                        <rdf:Description>
-                                                                                                                          <rdf:first rdf:resource="urn:swrl#msg"/>
-                                                                                                                          <rdf:rest>
-                                                                                                                            <rdf:Description>
-                                                                                                                              <rdf:rest>
-                                                                                                                                <rdf:Description>
-                                                                                                                                  <rdf:first rdf:resource="urn:swrl#day"/>
-                                                                                                                                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                                                                                                                </rdf:Description>
-                                                                                                                              </rdf:rest>
-                                                                                                                              <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Professor is overloaded at day </rdf:first>
-                                                                                                                            </rdf:Description>
-                                                                                                                          </rdf:rest>
-                                                                                                                        </rdf:Description>
-                                                                                                                      </swrl:arguments>
-                                                                                                                    </swrl:BuiltinAtom>
-                                                                                                                  </rdf:first>
-                                                                                                                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                                                                                                </rdf:Description>
-                                                                                                              </rdf:rest>
-                                                                                                            </rdf:Description>
-                                                                                                          </rdf:rest>
-                                                                                                        </rdf:Description>
-                                                                                                      </rdf:rest>
-                                                                                                    </rdf:Description>
-                                                                                                  </rdf:rest>
-                                                                                                </rdf:Description>
-                                                                                              </rdf:rest>
-                                                                                            </rdf:Description>
-                                                                                          </rdf:rest>
-                                                                                        </rdf:Description>
-                                                                                      </rdf:rest>
-                                                                                    </rdf:Description>
-                                                                                  </rdf:rest>
-                                                                                </rdf:Description>
-                                                                              </rdf:rest>
-                                                                            </rdf:Description>
-                                                                          </rdf:rest>
-                                                                        </rdf:Description>
-                                                                      </rdf:rest>
+                                                                      <rdf:first rdf:resource="urn:swrl#d"/>
+                                                                      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                                                                     </rdf:Description>
                                                                   </rdf:rest>
+                                                                  <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Professor is overloaded at day </rdf:first>
                                                                 </rdf:Description>
                                                               </rdf:rest>
                                                             </rdf:Description>
-                                                          </rdf:rest>
-                                                        </rdf:Description>
-                                                      </rdf:rest>
+                                                          </swrl:arguments>
+                                                        </swrl:BuiltinAtom>
+                                                      </rdf:first>
+                                                      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                                                     </rdf:Description>
                                                   </rdf:rest>
                                                 </rdf:Description>
@@ -1150,7 +1246,7 @@
                     <swrl:DatavaluedPropertyAtom>
                       <swrl:propertyPredicate rdf:resource="#day"/>
                       <swrl:argument1 rdf:resource="urn:swrl#s0"/>
-                      <swrl:argument2 rdf:resource="urn:swrl#day"/>
+                      <swrl:argument2 rdf:resource="urn:swrl#d"/>
                     </swrl:DatavaluedPropertyAtom>
                   </rdf:first>
                   <rdf:rest>
@@ -1168,7 +1264,7 @@
                             <swrl:IndividualPropertyAtom>
                               <swrl:propertyPredicate rdf:resource="#attends"/>
                               <swrl:argument1 rdf:resource="urn:swrl#g"/>
-                              <swrl:argument2 rdf:resource="urn:swrl#s0"/>
+                              <swrl:argument2 rdf:resource="urn:swrl#L0"/>
                             </swrl:IndividualPropertyAtom>
                           </rdf:first>
                           <rdf:rest>
@@ -1193,7 +1289,7 @@
                                         <swrl:DatavaluedPropertyAtom>
                                           <swrl:propertyPredicate rdf:resource="#day"/>
                                           <swrl:argument1 rdf:resource="urn:swrl#s1"/>
-                                          <swrl:argument2 rdf:resource="urn:swrl#day"/>
+                                          <swrl:argument2 rdf:resource="urn:swrl#d"/>
                                         </swrl:DatavaluedPropertyAtom>
                                       </rdf:first>
                                       <rdf:rest>
@@ -1211,7 +1307,7 @@
                                                 <swrl:IndividualPropertyAtom>
                                                   <swrl:propertyPredicate rdf:resource="#attends"/>
                                                   <swrl:argument1 rdf:resource="urn:swrl#g"/>
-                                                  <swrl:argument2 rdf:resource="urn:swrl#s1"/>
+                                                  <swrl:argument2 rdf:resource="urn:swrl#L1"/>
                                                 </swrl:IndividualPropertyAtom>
                                               </rdf:first>
                                               <rdf:rest>
@@ -1236,7 +1332,7 @@
                                                             <swrl:DatavaluedPropertyAtom>
                                                               <swrl:propertyPredicate rdf:resource="#day"/>
                                                               <swrl:argument1 rdf:resource="urn:swrl#s2"/>
-                                                              <swrl:argument2 rdf:resource="urn:swrl#day"/>
+                                                              <swrl:argument2 rdf:resource="urn:swrl#d"/>
                                                             </swrl:DatavaluedPropertyAtom>
                                                           </rdf:first>
                                                           <rdf:rest>
@@ -1254,7 +1350,7 @@
                                                                     <swrl:IndividualPropertyAtom>
                                                                       <swrl:propertyPredicate rdf:resource="#attends"/>
                                                                       <swrl:argument1 rdf:resource="urn:swrl#g"/>
-                                                                      <swrl:argument2 rdf:resource="urn:swrl#s2"/>
+                                                                      <swrl:argument2 rdf:resource="urn:swrl#L2"/>
                                                                     </swrl:IndividualPropertyAtom>
                                                                   </rdf:first>
                                                                   <rdf:rest>
@@ -1279,7 +1375,7 @@
                                                                                 <swrl:DatavaluedPropertyAtom>
                                                                                   <swrl:propertyPredicate rdf:resource="#day"/>
                                                                                   <swrl:argument1 rdf:resource="urn:swrl#s3"/>
-                                                                                  <swrl:argument2 rdf:resource="urn:swrl#day"/>
+                                                                                  <swrl:argument2 rdf:resource="urn:swrl#d"/>
                                                                                 </swrl:DatavaluedPropertyAtom>
                                                                               </rdf:first>
                                                                               <rdf:rest>
@@ -1297,174 +1393,81 @@
                                                                                         <swrl:IndividualPropertyAtom>
                                                                                           <swrl:propertyPredicate rdf:resource="#attends"/>
                                                                                           <swrl:argument1 rdf:resource="urn:swrl#g"/>
-                                                                                          <swrl:argument2 rdf:resource="urn:swrl#s3"/>
+                                                                                          <swrl:argument2 rdf:resource="urn:swrl#L3"/>
                                                                                         </swrl:IndividualPropertyAtom>
                                                                                       </rdf:first>
                                                                                       <rdf:rest>
                                                                                         <rdf:Description>
                                                                                           <rdf:first>
-                                                                                            <swrl:ClassAtom>
-                                                                                              <swrl:classPredicate rdf:resource="#Lesson"/>
-                                                                                              <swrl:argument1 rdf:resource="urn:swrl#L4"/>
-                                                                                            </swrl:ClassAtom>
+                                                                                            <swrl:DifferentIndividualsAtom>
+                                                                                              <swrl:argument1 rdf:resource="urn:swrl#s0"/>
+                                                                                              <swrl:argument2 rdf:resource="urn:swrl#s1"/>
+                                                                                            </swrl:DifferentIndividualsAtom>
                                                                                           </rdf:first>
                                                                                           <rdf:rest>
                                                                                             <rdf:Description>
                                                                                               <rdf:first>
-                                                                                                <swrl:ClassAtom>
-                                                                                                  <swrl:classPredicate rdf:resource="#Timeslot"/>
-                                                                                                  <swrl:argument1 rdf:resource="urn:swrl#s4"/>
-                                                                                                </swrl:ClassAtom>
+                                                                                                <swrl:DifferentIndividualsAtom>
+                                                                                                  <swrl:argument1 rdf:resource="urn:swrl#s0"/>
+                                                                                                  <swrl:argument2 rdf:resource="urn:swrl#s2"/>
+                                                                                                </swrl:DifferentIndividualsAtom>
                                                                                               </rdf:first>
                                                                                               <rdf:rest>
                                                                                                 <rdf:Description>
                                                                                                   <rdf:first>
-                                                                                                    <swrl:DatavaluedPropertyAtom>
-                                                                                                      <swrl:propertyPredicate rdf:resource="#day"/>
-                                                                                                      <swrl:argument1 rdf:resource="urn:swrl#s4"/>
-                                                                                                      <swrl:argument2 rdf:resource="urn:swrl#day"/>
-                                                                                                    </swrl:DatavaluedPropertyAtom>
+                                                                                                    <swrl:DifferentIndividualsAtom>
+                                                                                                      <swrl:argument1 rdf:resource="urn:swrl#s0"/>
+                                                                                                      <swrl:argument2 rdf:resource="urn:swrl#s3"/>
+                                                                                                    </swrl:DifferentIndividualsAtom>
                                                                                                   </rdf:first>
                                                                                                   <rdf:rest>
                                                                                                     <rdf:Description>
                                                                                                       <rdf:first>
-                                                                                                        <swrl:IndividualPropertyAtom>
-                                                                                                          <swrl:propertyPredicate rdf:resource="#isAtTimeslot"/>
-                                                                                                          <swrl:argument1 rdf:resource="urn:swrl#L4"/>
-                                                                                                          <swrl:argument2 rdf:resource="urn:swrl#s4"/>
-                                                                                                        </swrl:IndividualPropertyAtom>
+                                                                                                        <swrl:DifferentIndividualsAtom>
+                                                                                                          <swrl:argument1 rdf:resource="urn:swrl#s1"/>
+                                                                                                          <swrl:argument2 rdf:resource="urn:swrl#s2"/>
+                                                                                                        </swrl:DifferentIndividualsAtom>
                                                                                                       </rdf:first>
                                                                                                       <rdf:rest>
                                                                                                         <rdf:Description>
                                                                                                           <rdf:first>
-                                                                                                            <swrl:IndividualPropertyAtom>
-                                                                                                              <swrl:propertyPredicate rdf:resource="#attends"/>
-                                                                                                              <swrl:argument1 rdf:resource="urn:swrl#g"/>
-                                                                                                              <swrl:argument2 rdf:resource="urn:swrl#s4"/>
-                                                                                                            </swrl:IndividualPropertyAtom>
+                                                                                                            <swrl:DifferentIndividualsAtom>
+                                                                                                              <swrl:argument1 rdf:resource="urn:swrl#s1"/>
+                                                                                                              <swrl:argument2 rdf:resource="urn:swrl#s3"/>
+                                                                                                            </swrl:DifferentIndividualsAtom>
                                                                                                           </rdf:first>
                                                                                                           <rdf:rest>
                                                                                                             <rdf:Description>
                                                                                                               <rdf:first>
                                                                                                                 <swrl:DifferentIndividualsAtom>
-                                                                                                                  <swrl:argument1 rdf:resource="urn:swrl#L0"/>
-                                                                                                                  <swrl:argument2 rdf:resource="urn:swrl#L1"/>
+                                                                                                                  <swrl:argument1 rdf:resource="urn:swrl#s2"/>
+                                                                                                                  <swrl:argument2 rdf:resource="urn:swrl#s3"/>
                                                                                                                 </swrl:DifferentIndividualsAtom>
                                                                                                               </rdf:first>
                                                                                                               <rdf:rest>
                                                                                                                 <rdf:Description>
                                                                                                                   <rdf:first>
-                                                                                                                    <swrl:DifferentIndividualsAtom>
-                                                                                                                      <swrl:argument1 rdf:resource="urn:swrl#L0"/>
-                                                                                                                      <swrl:argument2 rdf:resource="urn:swrl#L2"/>
-                                                                                                                    </swrl:DifferentIndividualsAtom>
-                                                                                                                  </rdf:first>
-                                                                                                                  <rdf:rest>
-                                                                                                                    <rdf:Description>
-                                                                                                                      <rdf:first>
-                                                                                                                        <swrl:DifferentIndividualsAtom>
-                                                                                                                          <swrl:argument1 rdf:resource="urn:swrl#L0"/>
-                                                                                                                          <swrl:argument2 rdf:resource="urn:swrl#L3"/>
-                                                                                                                        </swrl:DifferentIndividualsAtom>
-                                                                                                                      </rdf:first>
-                                                                                                                      <rdf:rest>
+                                                                                                                    <swrl:BuiltinAtom>
+                                                                                                                      <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#stringConcat"/>
+                                                                                                                      <swrl:arguments>
                                                                                                                         <rdf:Description>
-                                                                                                                          <rdf:first>
-                                                                                                                            <swrl:DifferentIndividualsAtom>
-                                                                                                                              <swrl:argument1 rdf:resource="urn:swrl#L0"/>
-                                                                                                                              <swrl:argument2 rdf:resource="urn:swrl#L4"/>
-                                                                                                                            </swrl:DifferentIndividualsAtom>
-                                                                                                                          </rdf:first>
+                                                                                                                          <rdf:first rdf:resource="urn:swrl#msg"/>
                                                                                                                           <rdf:rest>
                                                                                                                             <rdf:Description>
-                                                                                                                              <rdf:first>
-                                                                                                                                <swrl:DifferentIndividualsAtom>
-                                                                                                                                  <swrl:argument1 rdf:resource="urn:swrl#L1"/>
-                                                                                                                                  <swrl:argument2 rdf:resource="urn:swrl#L2"/>
-                                                                                                                                </swrl:DifferentIndividualsAtom>
-                                                                                                                              </rdf:first>
                                                                                                                               <rdf:rest>
                                                                                                                                 <rdf:Description>
-                                                                                                                                  <rdf:first>
-                                                                                                                                    <swrl:DifferentIndividualsAtom>
-                                                                                                                                      <swrl:argument1 rdf:resource="urn:swrl#L1"/>
-                                                                                                                                      <swrl:argument2 rdf:resource="urn:swrl#L3"/>
-                                                                                                                                    </swrl:DifferentIndividualsAtom>
-                                                                                                                                  </rdf:first>
-                                                                                                                                  <rdf:rest>
-                                                                                                                                    <rdf:Description>
-                                                                                                                                      <rdf:first>
-                                                                                                                                        <swrl:DifferentIndividualsAtom>
-                                                                                                                                          <swrl:argument1 rdf:resource="urn:swrl#L1"/>
-                                                                                                                                          <swrl:argument2 rdf:resource="urn:swrl#L4"/>
-                                                                                                                                        </swrl:DifferentIndividualsAtom>
-                                                                                                                                      </rdf:first>
-                                                                                                                                      <rdf:rest>
-                                                                                                                                        <rdf:Description>
-                                                                                                                                          <rdf:first>
-                                                                                                                                            <swrl:DifferentIndividualsAtom>
-                                                                                                                                              <swrl:argument1 rdf:resource="urn:swrl#L2"/>
-                                                                                                                                              <swrl:argument2 rdf:resource="urn:swrl#L3"/>
-                                                                                                                                            </swrl:DifferentIndividualsAtom>
-                                                                                                                                          </rdf:first>
-                                                                                                                                          <rdf:rest>
-                                                                                                                                            <rdf:Description>
-                                                                                                                                              <rdf:first>
-                                                                                                                                                <swrl:DifferentIndividualsAtom>
-                                                                                                                                                  <swrl:argument1 rdf:resource="urn:swrl#L2"/>
-                                                                                                                                                  <swrl:argument2 rdf:resource="urn:swrl#L4"/>
-                                                                                                                                                </swrl:DifferentIndividualsAtom>
-                                                                                                                                              </rdf:first>
-                                                                                                                                              <rdf:rest>
-                                                                                                                                                <rdf:Description>
-                                                                                                                                                  <rdf:first>
-                                                                                                                                                    <swrl:DifferentIndividualsAtom>
-                                                                                                                                                      <swrl:argument1 rdf:resource="urn:swrl#L3"/>
-                                                                                                                                                      <swrl:argument2 rdf:resource="urn:swrl#L4"/>
-                                                                                                                                                    </swrl:DifferentIndividualsAtom>
-                                                                                                                                                  </rdf:first>
-                                                                                                                                                  <rdf:rest>
-                                                                                                                                                    <rdf:Description>
-                                                                                                                                                      <rdf:first>
-                                                                                                                                                        <swrl:BuiltinAtom>
-                                                                                                                                                          <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#stringConcat"/>
-                                                                                                                                                          <swrl:arguments>
-                                                                                                                                                            <rdf:Description>
-                                                                                                                                                              <rdf:first rdf:resource="urn:swrl#msg"/>
-                                                                                                                                                              <rdf:rest>
-                                                                                                                                                                <rdf:Description>
-                                                                                                                                                                  <rdf:rest>
-                                                                                                                                                                    <rdf:Description>
-                                                                                                                                                                      <rdf:first rdf:resource="urn:swrl#day"/>
-                                                                                                                                                                      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                                                                                                                                                    </rdf:Description>
-                                                                                                                                                                  </rdf:rest>
-                                                                                                                                                                  <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Group is overloaded at day </rdf:first>
-                                                                                                                                                                </rdf:Description>
-                                                                                                                                                              </rdf:rest>
-                                                                                                                                                            </rdf:Description>
-                                                                                                                                                          </swrl:arguments>
-                                                                                                                                                        </swrl:BuiltinAtom>
-                                                                                                                                                      </rdf:first>
-                                                                                                                                                      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                                                                                                                                    </rdf:Description>
-                                                                                                                                                  </rdf:rest>
-                                                                                                                                                </rdf:Description>
-                                                                                                                                              </rdf:rest>
-                                                                                                                                            </rdf:Description>
-                                                                                                                                          </rdf:rest>
-                                                                                                                                        </rdf:Description>
-                                                                                                                                      </rdf:rest>
-                                                                                                                                    </rdf:Description>
-                                                                                                                                  </rdf:rest>
+                                                                                                                                  <rdf:first rdf:resource="urn:swrl#d"/>
+                                                                                                                                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                                                                                                                                 </rdf:Description>
                                                                                                                               </rdf:rest>
+                                                                                                                              <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Group is overloaded at day </rdf:first>
                                                                                                                             </rdf:Description>
                                                                                                                           </rdf:rest>
                                                                                                                         </rdf:Description>
-                                                                                                                      </rdf:rest>
-                                                                                                                    </rdf:Description>
-                                                                                                                  </rdf:rest>
+                                                                                                                      </swrl:arguments>
+                                                                                                                    </swrl:BuiltinAtom>
+                                                                                                                  </rdf:first>
+                                                                                                                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                                                                                                                 </rdf:Description>
                                                                                                               </rdf:rest>
                                                                                                             </rdf:Description>
@@ -1564,7 +1567,7 @@
                 <rdf:Description>
                   <rdf:first>
                     <swrl:IndividualPropertyAtom>
-                      <swrl:propertyPredicate rdf:resource="#hasLearningAssignment"/>
+                      <swrl:propertyPredicate rdf:resource="#hasTeachingAssignment"/>
                       <swrl:argument1 rdf:resource="urn:swrl#p"/>
                       <swrl:argument2 rdf:resource="urn:swrl#sa"/>
                     </swrl:IndividualPropertyAtom>
@@ -1692,73 +1695,99 @@
             <rdf:Description>
               <rdf:first>
                 <swrl:ClassAtom>
-                  <swrl:classPredicate rdf:resource="#SubjAssignment"/>
-                  <swrl:argument1 rdf:resource="urn:swrl#sa"/>
+                  <swrl:classPredicate rdf:resource="#Group"/>
+                  <swrl:argument1 rdf:resource="urn:swrl#g"/>
                 </swrl:ClassAtom>
               </rdf:first>
               <rdf:rest>
                 <rdf:Description>
                   <rdf:first>
-                    <swrl:ClassAtom>
-                      <swrl:classPredicate rdf:resource="#Group"/>
+                    <swrl:IndividualPropertyAtom>
+                      <swrl:propertyPredicate rdf:resource="#attends"/>
                       <swrl:argument1 rdf:resource="urn:swrl#g"/>
-                    </swrl:ClassAtom>
+                      <swrl:argument2 rdf:resource="urn:swrl#L"/>
+                    </swrl:IndividualPropertyAtom>
                   </rdf:first>
                   <rdf:rest>
                     <rdf:Description>
                       <rdf:first>
                         <swrl:IndividualPropertyAtom>
-                          <swrl:propertyPredicate rdf:resource="#attends"/>
-                          <swrl:argument1 rdf:resource="urn:swrl#g"/>
-                          <swrl:argument2 rdf:resource="urn:swrl#L"/>
+                          <swrl:propertyPredicate rdf:resource="#takesPlace"/>
+                          <swrl:argument1 rdf:resource="urn:swrl#L"/>
+                          <swrl:argument2 rdf:resource="urn:swrl#r"/>
                         </swrl:IndividualPropertyAtom>
                       </rdf:first>
                       <rdf:rest>
                         <rdf:Description>
                           <rdf:first>
-                            <swrl:IndividualPropertyAtom>
-                              <swrl:propertyPredicate rdf:resource="#takesPlace"/>
-                              <swrl:argument1 rdf:resource="urn:swrl#L"/>
-                              <swrl:argument2 rdf:resource="urn:swrl#r"/>
-                            </swrl:IndividualPropertyAtom>
+                            <swrl:DatavaluedPropertyAtom>
+                              <swrl:propertyPredicate rdf:resource="#capacity"/>
+                              <swrl:argument1 rdf:resource="urn:swrl#r"/>
+                              <swrl:argument2 rdf:resource="urn:swrl#cap"/>
+                            </swrl:DatavaluedPropertyAtom>
                           </rdf:first>
                           <rdf:rest>
                             <rdf:Description>
                               <rdf:first>
                                 <swrl:DatavaluedPropertyAtom>
-                                  <swrl:propertyPredicate rdf:resource="#capacity"/>
-                                  <swrl:argument1 rdf:resource="urn:swrl#r"/>
-                                  <swrl:argument2 rdf:resource="urn:swrl#cap"/>
+                                  <swrl:propertyPredicate rdf:resource="#size"/>
+                                  <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                                  <swrl:argument2 rdf:resource="urn:swrl#n"/>
                                 </swrl:DatavaluedPropertyAtom>
                               </rdf:first>
                               <rdf:rest>
                                 <rdf:Description>
                                   <rdf:first>
-                                    <swrl:DatavaluedPropertyAtom>
-                                      <swrl:propertyPredicate rdf:resource="#size"/>
-                                      <swrl:argument1 rdf:resource="urn:swrl#g"/>
-                                      <swrl:argument2 rdf:resource="urn:swrl#n"/>
-                                    </swrl:DatavaluedPropertyAtom>
+                                    <swrl:BuiltinAtom>
+                                      <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#lessThan"/>
+                                      <swrl:arguments>
+                                        <rdf:Description>
+                                          <rdf:first rdf:resource="urn:swrl#cap"/>
+                                          <rdf:rest>
+                                            <rdf:Description>
+                                              <rdf:first rdf:resource="urn:swrl#n"/>
+                                              <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            </rdf:Description>
+                                          </rdf:rest>
+                                        </rdf:Description>
+                                      </swrl:arguments>
+                                    </swrl:BuiltinAtom>
                                   </rdf:first>
                                   <rdf:rest>
                                     <rdf:Description>
                                       <rdf:first>
-                                        <swrl:BuiltinAtom>
-                                          <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#lessThan"/>
-                                          <swrl:arguments>
-                                            <rdf:Description>
-                                              <rdf:first rdf:resource="urn:swrl#cap"/>
-                                              <rdf:rest>
-                                                <rdf:Description>
-                                                  <rdf:first rdf:resource="urn:swrl#n"/>
-                                                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                                </rdf:Description>
-                                              </rdf:rest>
-                                            </rdf:Description>
-                                          </swrl:arguments>
-                                        </swrl:BuiltinAtom>
+                                        <swrl:DatavaluedPropertyAtom>
+                                          <swrl:propertyPredicate rdf:resource="#hasName"/>
+                                          <swrl:argument1 rdf:resource="urn:swrl#L"/>
+                                          <swrl:argument2 rdf:resource="urn:swrl#Lname"/>
+                                        </swrl:DatavaluedPropertyAtom>
                                       </rdf:first>
-                                      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                      <rdf:rest>
+                                        <rdf:Description>
+                                          <rdf:first>
+                                            <swrl:BuiltinAtom>
+                                              <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#stringConcat"/>
+                                              <swrl:arguments>
+                                                <rdf:Description>
+                                                  <rdf:first rdf:resource="urn:swrl#msg"/>
+                                                  <rdf:rest>
+                                                    <rdf:Description>
+                                                      <rdf:rest>
+                                                        <rdf:Description>
+                                                          <rdf:first rdf:resource="urn:swrl#Lname"/>
+                                                          <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                        </rdf:Description>
+                                                      </rdf:rest>
+                                                      <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Room overflow with students at lesson: </rdf:first>
+                                                    </rdf:Description>
+                                                  </rdf:rest>
+                                                </rdf:Description>
+                                              </swrl:arguments>
+                                            </swrl:BuiltinAtom>
+                                          </rdf:first>
+                                          <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                        </rdf:Description>
+                                      </rdf:rest>
                                     </rdf:Description>
                                   </rdf:rest>
                                 </rdf:Description>
@@ -1783,7 +1812,7 @@
         <swrl:DatavaluedPropertyAtom>
           <swrl:propertyPredicate rdf:resource="#hasError"/>
           <swrl:argument1 rdf:resource="#ERRORS"/>
-          <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Room overflow with students</swrl:argument2>
+          <swrl:argument2 rdf:resource="urn:swrl#msg"/>
         </swrl:DatavaluedPropertyAtom>
       </rdf:first>
       <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -1868,7 +1897,43 @@
                                           <swrl:argument2 rdf:resource="urn:swrl#r"/>
                                         </swrl:IndividualPropertyAtom>
                                       </rdf:first>
-                                      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                      <rdf:rest>
+                                        <rdf:Description>
+                                          <rdf:first>
+                                            <swrl:DatavaluedPropertyAtom>
+                                              <swrl:propertyPredicate rdf:resource="#hasName"/>
+                                              <swrl:argument1 rdf:resource="urn:swrl#L1"/>
+                                              <swrl:argument2 rdf:resource="urn:swrl#Lname"/>
+                                            </swrl:DatavaluedPropertyAtom>
+                                          </rdf:first>
+                                          <rdf:rest>
+                                            <rdf:Description>
+                                              <rdf:first>
+                                                <swrl:BuiltinAtom>
+                                                  <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#stringConcat"/>
+                                                  <swrl:arguments>
+                                                    <rdf:Description>
+                                                      <rdf:first rdf:resource="urn:swrl#msg"/>
+                                                      <rdf:rest>
+                                                        <rdf:Description>
+                                                          <rdf:rest>
+                                                            <rdf:Description>
+                                                              <rdf:first rdf:resource="urn:swrl#Lname"/>
+                                                              <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                            </rdf:Description>
+                                                          </rdf:rest>
+                                                          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lessons clash at Room. One is: </rdf:first>
+                                                        </rdf:Description>
+                                                      </rdf:rest>
+                                                    </rdf:Description>
+                                                  </swrl:arguments>
+                                                </swrl:BuiltinAtom>
+                                              </rdf:first>
+                                              <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            </rdf:Description>
+                                          </rdf:rest>
+                                        </rdf:Description>
+                                      </rdf:rest>
                                     </rdf:Description>
                                   </rdf:rest>
                                 </rdf:Description>
@@ -1893,7 +1958,7 @@
         <swrl:DatavaluedPropertyAtom>
           <swrl:propertyPredicate rdf:resource="#hasError"/>
           <swrl:argument1 rdf:resource="#ERRORS"/>
-          <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lessons clash at Room</swrl:argument2>
+          <swrl:argument2 rdf:resource="urn:swrl#msg"/>
         </swrl:DatavaluedPropertyAtom>
       </rdf:first>
       <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
