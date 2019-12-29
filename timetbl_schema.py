@@ -465,7 +465,7 @@ def main():
 	return ######################################################## ! !
 				
 	
-	upload_rdf_to_SPARQL_endpoint('http://localhost:3030/ttbl/data', 'timetable_schema.rdf')
+	upload_rdf_to_SPARQL_endpoint('http://localhost:3030/ttbl/data', rdf_filename)
 				
 				
 if __name__ == '__main__':
